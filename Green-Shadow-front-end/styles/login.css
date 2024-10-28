@@ -111,7 +111,6 @@ form {
 
 .logo{
     width: 100%;
-    height: 20%;
 }
 
 input {
@@ -119,10 +118,28 @@ input {
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
-	width: 75%;
+	width: 70%;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 30px;
     margin-bottom: 20px;
+}
+
+select{
+    background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 70%;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    color: grey;
+}
+
+select option{
+    width: 70%;
+    padding: 20px;
+    border-radius: 30px;
 }
 
 .container {
@@ -134,7 +151,7 @@ input {
 	overflow: hidden;
 	width: 80%;
 	max-width: 100%;
-	min-height: 80%;
+	min-height: 90%;
 }
 
 .form-container {

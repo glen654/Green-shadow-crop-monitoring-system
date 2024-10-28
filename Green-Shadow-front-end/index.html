@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,35 +10,53 @@
     <!-- font-awesome-css -->
     <link rel="stylesheet" href="assets/fontawesome-free-6.5.1-web/css/all.min.css">
     <!-- login-custome-styles -->
-    <link rel="stylesheet" href="styles/login-styles.css">
+    <link rel="stylesheet" href="styles/login.css">
 </head>
+
 <body>
-    <!-- login section -->
-     <section id="login-form">
-        <div class="content-grid">
-            <div class="left">
-                <h1 class="section-head">login</h1>
-                <p class="section-slogan">Welcome to Green Shadow</p>
-
-                <div class="input-wrap">
-                    <input type="text" placeholder="Enter your email">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-
-                <div class="input-wrap">
-                    <input type="password" placeholder="Enter your password">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-
-                <button class="login-btn">Login</button>
-                <p class="or">OR</p>
-                <p class="register">Don't have an account <a href="#" class="reg-link">Sign Up</a></p>
+    <!-- login-section -->
+    <section id="login-section">
+        <div class="container" id="container">
+            <div class="form-container sign-up-container">
+                <form action="#">
+                    <img src="/Green-Shadow-front-end/assets/images/logo-no-background.svg" class="logo">
+                    <h1 class="form-header">Sign Up</h1>
+                    <span>Create your account to use Green Shadow</span>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <input type="">
+                    <button class="login-btn">Sign Up</button>
+                </form>
             </div>
-
-            <div class="right">
-                <img src="assets/images/logo-color.png">
+            <div class="form-container sign-in-container">
+                <form action="#">
+                    <img src="/Green-Shadow-front-end/assets/images/logo-no-background.svg" class="logo">
+                    <h1 class="form-header">Sign in</h1>
+                    <span>Please login to use Green Shadow</span>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button class="login-btn">Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back to Green Shadow!</h1>
+                        <p>To use Green Shadow please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Welcome Back to Green Shadow!</h1>
+                        <p>Enter your details and start using Green Shadow</p>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
             </div>
         </div>
-     </section>
+    </section>
+    
+    <script src="../Green-Shadow-front-end/js/login.js"></script>
 </body>
+
 </html>

@@ -43,22 +43,24 @@ body{
 }
 
 .form-box{
-    width: 500px;
+    width: 446px;
     height: 680px;
     position: relative;
     margin: 6% auto;
-    background: aliceblue;
+    background: #F8F1F1;
     padding: 5px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
 }
 
 .button-box{
-    width: 250px;
+    width: 230px;
     margin: 35px auto;
     position: relative;
     box-shadow: 0 0 20px 9px rgba(240, 255, 255, 0.63);
     border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .toggle-btn{
@@ -84,12 +86,12 @@ body{
 .input-group{
     top: 180px;
     position: absolute;
-    width: 280px;
+    width: 335px;
     transition: .5s;
 }
 
 .input-field{
-    width: 100%;
+    /* width: 100%;
     padding: 10px 0;
     margin: 5px 0;
     border-left: 0;
@@ -97,13 +99,21 @@ body{
     border-right: 0;
     border-bottom: 1px solid #999;
     outline: none;
-    background: transparent;
-
+    background: transparent; */
+    padding: 20px;
+    width: 350px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: black;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: 1px solid #0687a1;
 }
 
 .submit-btn{
-    width: 85%;
-    padding: 10px 30px;
+    width: 90%;
+    padding: 15px 35px;
     cursor: pointer;
     display: block;
     margin: auto;
@@ -111,4 +121,19 @@ body{
     border: 0;
     outline: none;
     border-radius: 30px;
+    margin-top: 20px;
+    color: aliceblue;
+    transition: .3s;
+}
+
+.submit-btn:hover{
+    background-color: #033e49;
+}
+
+#login{
+    left: 50px;
+}
+
+#register{
+    left: 450px;
 }

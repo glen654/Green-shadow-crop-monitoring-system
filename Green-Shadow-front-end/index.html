@@ -21,16 +21,25 @@
         <div class="form-container">
             <div class="form-box">
                 <div class="button-box">
-                    <div id="btn">
-
-                    </div>
-                    <button type="button" class="toggle-btn">Log In</button>
-                    <button type="button" class="toggle-btn">Register</button>
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                    <button type="button" class="toggle-btn" onclick="register()">Register</button>
                 </div>
-                <form class="input-group">
-                    <input type="text" class="input-field" placeholder="Email">
-                    <input type="text" class="input-field" placeholder="Password">
+                <form id="login" class="input-group">
+                    <input type="email" class="input-field" placeholder="Email">
+                    <input type="password" class="input-field" placeholder="Password">
                     <button type="submit" class="submit-btn">Log in</button>
+                </form>
+                <form id="register" class="input-group">
+                    <input type="text" class="input-field" placeholder="Name">
+                    <input type="email" class="input-field" placeholder="Email">
+                    <input type="password" class="input-field" placeholder="Password">
+                    <select  id="user-role" class="input-field">
+                            <option value="administrative">ADMINISTRATIVE</option>
+                            <option value="manager">MANAGER</option>
+                            <option value="user">USER</option>
+                    </select>
+                    <button type="submit" class="submit-btn">Register</button>
                 </form>
             </div>
         </div>

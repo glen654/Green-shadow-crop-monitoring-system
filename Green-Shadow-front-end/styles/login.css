@@ -7,13 +7,13 @@
     font-family: "Nunito", sans-serif;
 }
 
-body{
+/* body{
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-color: #F8F1F1;
-}
+} */
 
 #login-section{
   width: 80vw;

@@ -1,12 +1,13 @@
 $("#login-section").css({display:'none'});
-$("#navbar-section").css({display: 'block'});
+$("#dashboard-section").css({display: 'block'});
+$("#field-section").css({display:'none'});
 
-$(document).ready(function(){
-    $(".hamburger .hamburger__inner").click(function(){
-      $(".wrapper").toggleClass("active")
-    })
+$('#nav-dashboard').on('click', () => {
+  $('#dashboard-section').css({display: 'block'});
+  $('#field-section').css({display: 'none'});
+});
 
-    $(".top_navbar .fas").click(function(){
-       $(".profile_dd").toggleClass("active");
-    });
-})
+$('#nav-field').on('click', () => {
+  $('#dashboard-section').css({display: 'none'});
+  $('#field-section').css({display: 'block'});
+});

@@ -1,6 +1,10 @@
 #dashboard-section{
-    margin-top:75px;
+    margin-top:40px;
     background:#FAFAFA;
+}
+
+.container{
+    margin: 0;
 }
 
 .section-header{

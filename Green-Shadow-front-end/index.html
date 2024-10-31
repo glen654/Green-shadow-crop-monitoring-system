@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/login.css">
     <!-- navbar-css -->
      <link rel="stylesheet" href="styles/dashboard.css">
+     <link rel="stylesheet" href="styles/field.css">
 </head>
 
 <body>
@@ -90,7 +91,7 @@
 
      <!-- Dashboard -->
      <section id="dashboard-section">
-      <h1 class="text-start section-header"><i class="fab fa-delicious f-left"></i>Dashboard</h1>
+      <h1 class="text-start dashboard-header"><i class="fab fa-delicious f-left"></i>Dashboard</h1>
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-xl-3 mb-3">
@@ -138,6 +139,83 @@
 
      <!-- Field -->
      <section id="field-section">
+      <h1 class="text-start field-header"><i class="fab fa-delicious f-left"></i>Field</h1>
+      <div class="container light-style flex-grow-1 container-p-y">
+        <div class="form-card overflow-hidden">
+          <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-9">
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="account-general">
+    
+                  <div class="card-body media align-items-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80 mb-4">
+                    <div class="media-body ml-4">
+                      <label class="btn btn-outline-primary">
+                        Upload new photo
+                        <input type="file" class="account-settings-fileinput">
+                      </label> &nbsp;
+                      <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+    
+                      <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                    </div>
+                  </div>
+                  <hr class="border-light m-0">
+    
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label class="form-label">Field Name</label>
+                      <input type="text" class="form-control mb-2" value="">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Field Location</label>
+                      <input type="text" class="form-control mb-2" value="">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Extent Size</label>
+                      <input type="text" class="form-control mb-2" value="20 perch">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Company</label>
+                      <input type="text" class="form-control mb-2" value="Company Ltd.">
+                    </div>
+                      <div class="col-lg-12">
+                        <label class="form-label">Crop</label>
+                        <div class="ui-select">
+                          <select id="crop-type" class="form-control">
+                            <option value="banana">Banana</option>
+                            <option value="Papaya">Papaya</option>
+                            <option value="guvava">Guava</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <label class="form-label">Staff</label>
+                        <div class="ui-select">
+                          <select id="staff-type" class="form-control">
+                            <option value="perera">Perera</option>
+                            <option value="silva">Silva</option>
+                            <option value="mendis">Mendis</option>
+                          </select>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="text-right mt-3">
+                    <button type="button" class="btn btn-success">Save changes</button>&nbsp;
+                    <button type="button" class="btn btn-info">Cancel</button>
+                  </div>
+    
+                </div>
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        
+    
+      </div>
 
      </section>
      <!-- jquery -->

@@ -1,18 +1,5 @@
-#dashboard-section{
-    background:#f0f0f0;
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-
 .container{
     margin: 0;
-}
-
-.dashboard-header{
-    margin-top: 30px;
-    margin-left: 25px;
-    margin-bottom: 70px;
 }
 
 .order-card {

@@ -13,10 +13,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <!-- login-custome-styles -->
   <link rel="stylesheet" href="styles/login.css">
-  <!-- navbar-css -->
+  <!-- dashboard-css -->
   <link rel="stylesheet" href="styles/dashboard.css">
-  <link rel="stylesheet" href="styles/field.css">
-  <link rel="stylesheet" href="styles/crop.css">
+  <!-- custome styles -->
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
   <!-- navbar -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary bg-c-green">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fa-solid fa-leaf"></i>Green Shadow</a>
+      <a class="navbar-brand" style="color: #ffffff;" href="#"><i class="fa-solid fa-leaf" style="color: #ffffff;"></i>Green Shadow</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,25 +63,25 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <span class="nav-link" aria-current="page" id="nav-dashboard" style="cursor: pointer;">Dashboard</span>
+            <span class="nav-link" aria-current="page" id="nav-dashboard" style="cursor: pointer; color: #16325B; font-weight: 600;">Dashboard</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-field" style="cursor: pointer;">Field</span>
+            <span class="nav-link" id="nav-field" style="cursor: pointer; color: #16325B; font-weight: 600;">Field</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-crop" style="cursor: pointer;">Crop</span>
+            <span class="nav-link" id="nav-crop" style="cursor: pointer; color: #16325B; font-weight: 600;">Crop</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-staff" style="cursor: pointer;">Staff</span>
+            <span class="nav-link" id="nav-staff" style="cursor: pointer; color: #16325B; font-weight: 600;">Staff</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-monitor-log" style="cursor: pointer;">Monitoring Log</soan>
+            <span class="nav-link" id="nav-monitor-log" style="cursor: pointer; color: #16325B; font-weight: 600;">Monitoring Log</soan>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-vehicle" style="cursor: pointer;">Vehicle</span>
+            <span class="nav-link" id="nav-vehicle" style="cursor: pointer; color: #16325B; font-weight: 600;">Vehicle</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-equipment" style="cursor: pointer;">Equipment</span>
+            <span class="nav-link" id="nav-equipment" style="cursor: pointer; color: #16325B; font-weight: 600;">Equipment</span>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -94,7 +94,7 @@
 
   <!-- Dashboard -->
   <section id="dashboard-section">
-    <h1 class="text-start dashboard-header"><i class="fab fa-delicious f-left"></i>Dashboard</h1>
+    <h1 class="text-start section-header"><i class="fab fa-delicious f-left"></i>Dashboard</h1>
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-xl-3 mb-3">
@@ -143,7 +143,7 @@
   <!-- Field -->
   <section id="field-section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
-      <h1 class="text-start field-header">
+      <h1 class="text-start section-header">
         <i class="fab fa-delicious f-left"></i>Field
       </h1>
       <div class="row">
@@ -274,7 +274,7 @@
   <!-- Crop section -->
   <section id="crop-section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
-      <h1 class="text-start crop-header">
+      <h1 class="text-start section-header">
         <i class="fa-solid fa-seedling"></i>Crop
       </h1>
       <div class="row">
@@ -397,7 +397,7 @@
   <!-- Staff section -->
   <section id="staff-section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
-      <h1 class="text-start staff-header">
+      <h1 class="text-start section-header">
         <i class="fa-solid fa-people-group"></i>Staff
       </h1>
       <div class="row">
@@ -588,8 +588,273 @@
   <!-- Monitoring log section -->
   <section id="monitoring-section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
-      <h1 class="text-start monitoring-log-header">
-          <i class="fas fa-clipboard-list f-left"></i>Monitoring Logs
+      <h1 class="text-start section-header">
+        <i class="fas fa-clipboard-list f-left"></i>Monitoring Logs
+      </h1>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <!-- Form Section -->
+          <div class="form-card overflow-hidden">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="form-label">Log Date</label>
+                <input type="date" class="form-control mb-4 shadow-none">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Log Details / Observation</label>
+                <textarea class="form-control mb-4 shadow-none" placeholder="Enter observation details"
+                  rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Observed Image</label>
+                <input type="file" class="form-control mb-4 shadow-none" accept="image/*">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Relevant Field(s)</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="field1">Field Name 1</option>
+                  <option value="field2">Field Name 2</option>
+                  <option value="field3">Field Name 3</option>
+                  <option value="na">N/A</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Relevant Crop(s)</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="banana">Banana</option>
+                  <option value="papaya">Papaya</option>
+                  <option value="guava">Guava</option>
+                  <option value="na">N/A</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Relevant Staff Member(s)</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="perera">Perera</option>
+                  <option value="silva">Silva</option>
+                  <option value="mendis">Mendis</option>
+                  <option value="na">N/A</option>
+                </select>
+              </div>
+              <div class="text-right mt-3">
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-info">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 col-sm-12">
+          <!-- Table Section -->
+          <div class="container">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Log Date</th>
+                    <th scope="col">Log Details</th>
+                    <th scope="col">Observed Image</th>
+                    <th scope="col">Relevant Field(s)</th>
+                    <th scope="col">Relevant Crop(s)</th>
+                    <th scope="col">Relevant Staff Member(s)</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2023-10-01</td>
+                    <td>Observed growth issues in field.</td>
+                    <td><img src="image1.jpg" alt="Observation 1" style="width: 50px; height: auto;"></td>
+                    <td>Field Name 1</td>
+                    <td>Banana</td>
+                    <td>Perera</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2023-10-02</td>
+                    <td>Successful harvest recorded.</td>
+                    <td><img src="image2.jpg" alt="Observation 2" style="width: 50px; height: auto;"></td>
+                    <td>Field Name 2</td>
+                    <td>Papaya</td>
+                    <td>Silva</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2023-10-03</td>
+                    <td>Pests observed in the crop.</td>
+                    <td><img src="image3.jpg" alt="Observation 3" style="width: 50px; height: auto;"></td>
+                    <td>Field Name 3</td>
+                    <td>Guava</td>
+                    <td>Mendis</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicle section -->
+  <section id="vehicle-section">
+    <div class="container-fluid light-style flex-grow-1 container-p-y">
+      <h1 class="text-start section-header">
+        <i class="fas fa-truck f-left"></i>Vehicle
+      </h1>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <!-- Form Section -->
+          <div class="form-card overflow-hidden">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="form-label">License Plate Number</label>
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter license plate number">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Vehicle Category</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="van">Van</option>
+                  <option value="truck">Truck</option>
+                  <option value="car">Car</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Fuel Type</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="diesel">Diesel</option>
+                  <option value="petrol">Petrol</option>
+                  <option value="electric">Electric</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="available">Available</option>
+                  <option value="out_of_service">Out of Service</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Allocated Staff Member</label>
+                <select class="form-control mb-4 shadow-none">
+                  <option value="perera">Perera</option>
+                  <option value="silva">Silva</option>
+                  <option value="mendis">Mendis</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Remarks</label>
+                <textarea class="form-control mb-4 shadow-none" placeholder="Enter remarks" rows="3"></textarea>
+              </div>
+              <div class="text-right mt-3">
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-info">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 col-sm-12">
+          <!-- Table Section -->
+          <div class="container">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">License Plate Number</th>
+                    <th scope="col">Vehicle Category</th>
+                    <th scope="col">Fuel Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Allocated Staff Member</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ABC123</td>
+                    <td>Van</td>
+                    <td>Diesel</td>
+                    <td>Available</td>
+                    <td>Perera</td>
+                    <td>No issues reported.</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>XYZ789</td>
+                    <td>Truck</td>
+                    <td>Petrol</td>
+                    <td>Out of Service</td>
+                    <td>Silva</td>
+                    <td>Undergoing maintenance.</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LMN456</td>
+                    <td>Car</td>
+                    <td>Electric</td>
+                    <td>Available</td>
+                    <td>Mendis</td>
+                    <td>Newly added vehicle.</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment section -->
+  <section id="equipment-section">
+    <div class="container-fluid light-style flex-grow-1 container-p-y">
+      <h1 class="text-start section-header">
+          <i class="fas fa-trowel f-left"></i>Equipment
       </h1>
       <div class="row">
           <div class="col-md-4 col-sm-12">
@@ -597,41 +862,38 @@
               <div class="form-card overflow-hidden">
                   <div class="card-body">
                       <div class="form-group">
-                          <label class="form-label">Log Date</label>
-                          <input type="date" class="form-control mb-4 shadow-none">
+                          <label class="form-label">Name</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter equipment name">
                       </div>
                       <div class="form-group">
-                          <label class="form-label">Log Details / Observation</label>
-                          <textarea class="form-control mb-4 shadow-none" placeholder="Enter observation details" rows="3"></textarea>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Observed Image</label>
-                          <input type="file" class="form-control mb-4 shadow-none" accept="image/*">
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Relevant Field(s)</label>
+                          <label class="form-label">Type</label>
                           <select class="form-control mb-4 shadow-none">
-                              <option value="field1">Field Name 1</option>
-                              <option value="field2">Field Name 2</option>
-                              <option value="field3">Field Name 3</option>
-                              <option value="na">N/A</option>
+                              <option value="electrical">Electrical</option>
+                              <option value="mechanical">Mechanical</option>
                           </select>
                       </div>
                       <div class="form-group">
-                          <label class="form-label">Relevant Crop(s)</label>
+                          <label class="form-label">Status</label>
                           <select class="form-control mb-4 shadow-none">
-                              <option value="banana">Banana</option>
-                              <option value="papaya">Papaya</option>
-                              <option value="guava">Guava</option>
-                              <option value="na">N/A</option>
+                              <option value="available">Available</option>
+                              <option value="not_available">Not Available</option>
                           </select>
                       </div>
                       <div class="form-group">
-                          <label class="form-label">Relevant Staff Member(s)</label>
+                          <label class="form-label">Assigned Staff</label>
                           <select class="form-control mb-4 shadow-none">
                               <option value="perera">Perera</option>
                               <option value="silva">Silva</option>
                               <option value="mendis">Mendis</option>
+                              <option value="na">N/A</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Assigned Field</label>
+                          <select class="form-control mb-4 shadow-none">
+                              <option value="field1">Field Name 1</option>
+                              <option value="field2">Field Name 2</option>
+                              <option value="field3">Field Name 3</option>
                               <option value="na">N/A</option>
                           </select>
                       </div>
@@ -650,23 +912,21 @@
                       <table class="table">
                           <thead>
                               <tr>
-                                  <th scope="col">Log Date</th>
-                                  <th scope="col">Log Details</th>
-                                  <th scope="col">Observed Image</th>
-                                  <th scope="col">Relevant Field(s)</th>
-                                  <th scope="col">Relevant Crop(s)</th>
-                                  <th scope="col">Relevant Staff Member(s)</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Type</th>
+                                  <th scope="col">Status</th>
+                                  <th scope="col">Assigned Staff</th>
+                                  <th scope="col">Assigned Field</th>
                                   <th scope="col">Actions</th>
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
-                                  <td>2023-10-01</td>
-                                  <td>Observed growth issues in field.</td>
-                                  <td><img src="image1.jpg" alt="Observation 1" style="width: 50px; height: auto;"></td>
-                                  <td>Field Name 1</td>
-                                  <td>Banana</td>
+                                  <td>Tractor</td>
+                                  <td>Mechanical</td>
+                                  <td>Available</td>
                                   <td>Perera</td>
+                                  <td>Field Name 1</td>
                                   <td>
                                       <a href="#" class="text-info" title="Update">
                                           <i class="fas fa-pencil-alt"></i>
@@ -677,12 +937,11 @@
                                   </td>
                               </tr>
                               <tr>
-                                  <td>2023-10-02</td>
-                                  <td>Successful harvest recorded.</td>
-                                  <td><img src="image2.jpg" alt="Observation 2" style="width: 50px; height: auto;"></td>
-                                  <td>Field Name 2</td>
-                                  <td>Papaya</td>
+                                  <td>Generator</td>
+                                  <td>Electrical</td>
+                                  <td>Not Available</td>
                                   <td>Silva</td>
+                                  <td>N/A</td>
                                   <td>
                                       <a href="#" class="text-info" title="Update">
                                           <i class="fas fa-pencil-alt"></i>
@@ -693,12 +952,11 @@
                                   </td>
                               </tr>
                               <tr>
-                                  <td>2023-10-03</td>
-                                  <td>Pests observed in the crop.</td>
-                                  <td><img src="image3.jpg" alt="Observation 3" style="width: 50px; height: auto;"></td>
-                                  <td>Field Name 3</td>
-                                  <td>Guava</td>
+                                  <td>Water Pump</td>
+                                  <td>Mechanical</td>
+                                  <td>Available</td>
                                   <td>Mendis</td>
+                                  <td>Field Name 3</td>
                                   <td>
                                       <a href="#" class="text-info" title="Update">
                                           <i class="fas fa-pencil-alt"></i>
@@ -716,138 +974,6 @@
       </div>
   </div>
   </section>
-
-  <!-- Vehicle section -->
-   <section id="vehicle-section">
-    <div class="container-fluid light-style flex-grow-1 container-p-y">
-      <h1 class="text-start vehicle-header">
-          <i class="fas fa-truck f-left"></i>Vehicle
-      </h1>
-      <div class="row">
-          <div class="col-md-4 col-sm-12">
-              <!-- Form Section -->
-              <div class="form-card overflow-hidden">
-                  <div class="card-body">
-                      <div class="form-group">
-                          <label class="form-label">License Plate Number</label>
-                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter license plate number">
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Vehicle Category</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="van">Van</option>
-                              <option value="truck">Truck</option>
-                              <option value="car">Car</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Fuel Type</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="diesel">Diesel</option>
-                              <option value="petrol">Petrol</option>
-                              <option value="electric">Electric</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Status</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="available">Available</option>
-                              <option value="out_of_service">Out of Service</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Allocated Staff Member</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="perera">Perera</option>
-                              <option value="silva">Silva</option>
-                              <option value="mendis">Mendis</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label class="form-label">Remarks</label>
-                          <textarea class="form-control mb-4 shadow-none" placeholder="Enter remarks" rows="3"></textarea>
-                      </div>
-                      <div class="text-right mt-3">
-                          <button type="button" class="btn btn-success">Save</button>
-                          <button type="button" class="btn btn-info">Cancel</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="col-md-8 col-sm-12">
-              <!-- Table Section -->
-              <div class="container">
-                  <div class="table-responsive">
-                      <table class="table">
-                          <thead>
-                              <tr>
-                                  <th scope="col">License Plate Number</th>
-                                  <th scope="col">Vehicle Category</th>
-                                  <th scope="col">Fuel Type</th>
-                                  <th scope="col">Status</th>
-                                  <th scope="col">Allocated Staff Member</th>
-                                  <th scope="col">Remarks</th>
-                                  <th scope="col">Actions</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td>ABC123</td>
-                                  <td>Van</td>
-                                  <td>Diesel</td>
-                                  <td>Available</td>
-                                  <td>Perera</td>
-                                  <td>No issues reported.</td>
-                                  <td>
-                                      <a href="#" class="text-info" title="Update">
-                                          <i class="fas fa-pencil-alt"></i>
-                                      </a>
-                                      <a href="#" class="text-danger" title="Delete">
-                                          <i class="fas fa-trash-alt"></i>
-                                      </a>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>XYZ789</td>
-                                  <td>Truck</td>
-                                  <td>Petrol</td>
-                                  <td>Out of Service</td>
-                                  <td>Silva</td>
-                                  <td>Undergoing maintenance.</td>
-                                  <td>
-                                      <a href="#" class="text-info" title="Update">
-                                          <i class="fas fa-pencil-alt"></i>
-                                      </a>
-                                      <a href="#" class="text-danger" title="Delete">
-                                          <i class="fas fa-trash-alt"></i>
-                                      </a>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>LMN456</td>
-                                  <td>Car</td>
-                                  <td>Electric</td>
-                                  <td>Available</td>
-                                  <td>Mendis</td>
-                                  <td>Newly added vehicle.</td>
-                                  <td>
-                                      <a href="#" class="text-info" title="Update">
-                                          <i class="fas fa-pencil-alt"></i>
-                                      </a>
-                                      <a href="#" class="text-danger" title="Delete">
-                                          <i class="fas fa-trash-alt"></i>
-                                      </a>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-   </section>
   <!-- jquery -->
   <script src="/Green-Shadow-front-end/assets/lib/jquery-3.7.1.min.js"></script>
   <!-- bootstrap js -->

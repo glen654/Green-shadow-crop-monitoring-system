@@ -1,11 +1,58 @@
-#field-section{
-    background:#f0f0f0;
+:root{
+    --background-color:#f0f0f0;
+}
+
+#dashboard-section{
+    background: var(--background-color);
     width: 100%;
     height: auto;
     overflow-x: hidden;
 }
 
-.field-header{
+#field-section{
+    background: var(--background-color);
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+#crop-section{
+    background:var(--background-color);
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+#staff-section{
+    background:var(--background-color);
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+#monitoring-section{
+    background:var(--background-color);
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+
+#vehicle-section{
+    background:var(--background-color);
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+#equipment-section{
+    background:var(--background-color);
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+}
+
+.section-header{
     margin-top: 30px;
     margin-left: 25px;
     margin-bottom: 20px;

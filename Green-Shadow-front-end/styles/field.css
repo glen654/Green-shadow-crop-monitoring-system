@@ -1,13 +1,12 @@
 #field-section{
-    margin-top: 10px;
     background:#f0f0f0;
     width: 100%;
-    height: 90vh;
+    height: auto;
     overflow-x: hidden;
 }
 
 .field-header{
-    margin-top: 15px;
+    margin-top: 30px;
     margin-left: 25px;
     margin-bottom: 20px;
 }

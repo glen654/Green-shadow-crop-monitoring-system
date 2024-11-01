@@ -53,9 +53,9 @@
   </section>
 
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-c-green">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Green Shadow</a>
+      <a class="navbar-brand"  href="#"><i class="fa-solid fa-leaf"></i>Green Shadow</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@
             <span class="nav-link" id="nav-crop" style="cursor: pointer;">Crop</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link" id="nav-crop" style="cursor: pointer;">Staff</span>
+            <span class="nav-link" id="nav-staff" style="cursor: pointer;">Staff</span>
           </li>
           <li class="nav-item">
             <span class="nav-link" id="nav-monitor-log" style="cursor: pointer;">Monitoring Log</soan>
@@ -397,6 +397,201 @@
       </div>
     </div>
   </section>
+
+  <!-- Staff section -->
+   <section id="staff-section">
+    <div class="container-fluid light-style flex-grow-1 container-p-y">
+      <h1 class="text-start staff-header">
+        <i class="fa-solid fa-people-group"></i>Staff
+      </h1>
+      <div class="row">
+          <div class="col-md-4 col-sm-12">
+              <!-- Form Section -->
+              <div class="form-card overflow-hidden">
+                  <div class="card-body">
+                      <div class="form-group">
+                          <label class="form-label">First Name</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter first name">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Last Name</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter last name">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Designation</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter designation">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Gender</label>
+                          <select class="form-control mb-4 shadow-none">
+                              <option value="male">Male</option>
+                              <option value="female">Female</option>
+                              <option value="other">Other</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Joined Date</label>
+                          <input type="date" class="form-control mb-4 shadow-none">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Date of Birth</label>
+                          <input type="date" class="form-control mb-4 shadow-none">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Address Line 01</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Building no or name">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Address Line 02</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Lane">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Address Line 03</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="City">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Address Line 04</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="State">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Postal Code</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Postal code">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Contact No.</label>
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Mobile number">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Email</label>
+                          <input type="email" class="form-control mb-4 shadow-none" placeholder="Email address">
+                      </div>
+                      <div class="form-group">
+                          <label class="form-label">Role</label>
+                          <select class="form-control mb-4 shadow-none">
+                              <option value="admin">Admin</option>
+                              <option value="field_worker">Field Worker</option>
+                              <option value="manager">Manager</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">Allocated Field(s)</label>
+                        <select class="form-control mb-4 shadow-none">
+                            <option value="field1">Field Name 1</option>
+                            <option value="field2">Field Name 2</option>
+                            <option value="field3">Field Name 3</option>
+                            <option value="na">N/A</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Vehicle</label>
+                        <select class="form-control mb-4 shadow-none">
+                            <option value="vehicle1">Vehicle 1</option>
+                            <option value="vehicle2">Vehicle 2</option>
+                            <option value="vehicle3">Vehicle 3</option>
+                            <option value="na">N/A</option>
+                        </select>
+                    </div>
+                      <div class="text-right mt-3">
+                          <button type="button" class="btn btn-success">Save</button>
+                          <button type="button" class="btn btn-info">Cancel</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-8 col-sm-12">
+              <!-- Table Section -->
+              <div class="container">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th scope="col">Staff ID</th>
+                                  <th scope="col">First Name</th>
+                                  <th scope="col">Last Name</th>
+                                  <th scope="col">Designation</th>
+                                  <th scope="col">Gender</th>
+                                  <th scope="col">Joined Date</th>
+                                  <th scope="col">DOB</th>
+                                  <th scope="col">Contact No.</th>
+                                  <th scope="col">Email</th>
+                                  <th scope="col">Role</th>
+                                  <th scope="col">Allocated Field(s)</th>
+                                  <th scope="col">Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <th scope="row">1</th>
+                                  <td>John</td>
+                                  <td>Doe</td>
+                                  <td>Manager</td>
+                                  <td>Male</td>
+                                  <td>2020-01-15</td>
+                                  <td>1985-05-23</td>
+                                  <td>123-456-7890</td>
+                                  <td>john.doe@example.com</td>
+                                  <td>Admin</td>
+                                  <td>Field Name 1</td>
+                                  <td>
+                                      <a href="#" class="text-info" title="Update">
+                                          <i class="fas fa-pencil-alt"></i>
+                                      </a>
+                                      <a href="#" class="text-danger" title="Delete">
+                                          <i class="fas fa-trash-alt"></i>
+                                      </a>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th scope="row">2</th>
+                                  <td>Jane</td>
+                                  <td>Smith</td>
+                                  <td>Field Worker</td>
+                                  <td>Female</td>
+                                  <td>2021-03-22</td>
+                                  <td>1990-07-15</td>
+                                  <td>234-567-8901</td>
+                                  <td>jane.smith@example.com</td>
+                                  <td>Field Worker</td>
+                                  <td>N/A</td>
+                                  <td>
+                                      <a href="#" class="text-info" title="Update">
+                                          <i class="fas fa-pencil-alt"></i>
+                                      </a>
+                                      <a href="#" class="text-danger" title="Delete">
+                                          <i class="fas fa-trash-alt"></i>
+                                      </a>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th scope="row">3</th>
+                                  <td>Bob</td>
+                                  <td>Johnson</td>
+                                  <td>Supervisor</td>
+                                  <td>Male</td>
+                                  <td>2019-08-10</td>
+                                  <td>1982-11-30</td>
+                                  <td>345-678-9012</td>
+                                  <td>bob.johnson@example.com</td>
+                                  <td>Manager</td>
+                                  <td>Field Name 2</td>
+                                  <td>
+                                      <a href="#" class="text-info" title="Update">
+                                          <i class="fas fa-pencil-alt"></i>
+                                      </a>
+                                      <a href="#" class="text-danger" title="Delete">
+                                          <i class="fas fa-trash-alt"></i>
+                                      </a>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+   </section>
   <!-- jquery -->
   <script src="/Green-Shadow-front-end/assets/lib/jquery-3.7.1.min.js"></script>
   <!-- bootstrap js -->

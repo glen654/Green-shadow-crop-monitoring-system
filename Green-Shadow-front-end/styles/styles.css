@@ -1,92 +1,70 @@
-:root{
-    --background-color:#f0f0f0;
+:root {
+    --background-color: #f0f0f0;
 }
 
-#dashboard-section{
+#dashboard-section {
     background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
-#field-section{
+#field-section {
     background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
-#crop-section{
-    background:var(--background-color);
+#crop-section {
+    background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
-#staff-section{
-    background:var(--background-color);
+#staff-section {
+    background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
-#monitoring-section{
-    background:var(--background-color);
+#monitoring-section {
+    background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
 
-#vehicle-section{
-    background:var(--background-color);
+#vehicle-section {
+    background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
-#equipment-section{
-    background:var(--background-color);
+#equipment-section {
+    background: var(--background-color);
     width: 100%;
-    height: auto;
+    height: 94vh;
     overflow-x: hidden;
 }
 
-.section-header{
+.section-header {
     margin-top: 30px;
     margin-left: 25px;
     margin-bottom: 20px;
 }
 
-.ui-w-80 {
-    width: 80px !important;
-    height: auto;
+.btn{
+    transition: 0.3s;
 }
 
-.btn-default {
-    border-color: rgba(24,28,33,0.1);
-    background: rgba(0,0,0,0);
-    color: #4E5155;
+.btn:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-
-label.btn {
-    margin-bottom: 0;
-}
-
-.btn-outline-primary {
-    border-color: #26B4FF;
-    background: transparent;
-    color: #26B4FF;
-}
-
-.btn {
-    cursor: pointer;
-}
-
-.text-light {
-    color: #babbbc !important;
-}
-
 
 .form-card {
     background-clip: padding-box;
@@ -100,8 +78,24 @@ label.btn {
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #22b671;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #22b671;
+}
+
 @media (max-width:780px) {
-    .form-card{
+    .form-card {
         margin-bottom: 20px;
     }
 }

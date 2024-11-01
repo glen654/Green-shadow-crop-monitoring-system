@@ -1,7 +1,7 @@
 $("#login-section").css({display:'none'});
 $("#dashboard-section").css({display: 'block'});
 $("#field-section").css({display:'none'});
-$("crop-section").css({display:'none'});
+$("#crop-section").css({display:'none'});
 
 $('#nav-dashboard').on('click', () => {
   $('#dashboard-section').css({display: 'block'});

@@ -16,6 +16,7 @@
   <!-- navbar-css -->
   <link rel="stylesheet" href="styles/dashboard.css">
   <link rel="stylesheet" href="styles/field.css">
+  <link rel="stylesheet" href="styles/crop.css">
 </head>
 
 <body>
@@ -271,9 +272,131 @@
   </section>
 
   <!-- Crop section -->
-   <section id="crop-section">
-    
-   </section>
+  <section id="crop-section">
+    <div class="container-fluid light-style flex-grow-1 container-p-y">
+      <h1 class="text-start crop-header">
+        <i class="fa-solid fa-seedling"></i>Crop
+      </h1>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <!-- Form Section -->
+          <div class="form-card overflow-hidden">
+            <div class="card-body">
+              <div class="form-group">
+                <label class="form-label">Common Name</label>
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter common name of the crop">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Scientific Name</label>
+                <input type="text" class="form-control mb-4 shadow-none"
+                  placeholder="Enter scientific name of the crop">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Crop Image</label>
+                <input type="file" class="form-control mb-4 shadow-none" accept="image/*">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <input type="text" class="form-control mb-4 shadow-none"
+                  placeholder="Enter crop category (e.g., Cereal)">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Season</label>
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter crop season">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Field Details</label>
+                <select id="field-details" class="form-control mb-4 shadow-none">
+                  <option value="field1">Field Name 1</option>
+                  <option value="field2">Field Name 2</option>
+                  <option value="field3">Field Name 3</option>
+                </select>
+              </div>
+              <div class="text-right mt-3">
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-info">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8 col-sm-12">
+          <!-- Table Section -->
+          <div class="container">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Crop Image</th>
+                    <th scope="col">Crop Code</th>
+                    <th scope="col">Common Name</th>
+                    <th scope="col">Scientific Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Season</th>
+                    <th scope="col">Field Details</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>CROP001</td>
+                    <td>Banana</td>
+                    <td>Musa</td>
+                    <td>Cereal</td>
+                    <td>Summer</td>
+                    <td>Field Name 1</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>CROP002</td>
+                    <td>Papaya</td>
+                    <td>Carica papaya</td>
+                    <td>Fruit</td>
+                    <td>Winter</td>
+                    <td>Field Name 2</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>CROP003</td>
+                    <td>Guava</td>
+                    <td>Psidium guajava</td>
+                    <td>Fruit</td>
+                    <td>Rainy</td>
+                    <td>Field Name 3</td>
+                    <td>
+                      <a href="#" class="text-info" title="Update">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#" class="text-danger" title="Delete">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- jquery -->
   <script src="/Green-Shadow-front-end/assets/lib/jquery-3.7.1.min.js"></script>
   <!-- bootstrap js -->

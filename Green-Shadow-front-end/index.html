@@ -154,15 +154,19 @@
             <div class="card-body">
               <div class="form-group">
                 <label class="form-label">Field Name</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter field name">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter field name" id="field_name">
               </div>
               <div class="form-group">
                 <label class="form-label">Field Location (Coordinate)</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates" id="field_location_x">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Field Location (Coordinate)</label>
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates" id="field_location_y">
               </div>
               <div class="form-group">
                 <label class="form-label">Extent Size (sq. m)</label>
-                <input type="number" class="form-control mb-4 shadow-none" placeholder="Enter extent size in sq. m">
+                <input type="number" class="form-control mb-4 shadow-none" placeholder="Enter extent size in sq. m" id="field_size">
               </div>
               <div class="form-group">
                 <label class="form-label">Crops</label>
@@ -182,15 +186,15 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Field Image 1</label>
-                <input type="file" class="form-control mb-4 shadow-none" accept="image/*">
+                <input type="file" class="form-control mb-4 shadow-none" accept="image/*" id="field_image1">
               </div>
               <div class="form-group">
                 <label class="form-label">Field Image 2</label>
-                <input type="file" class="form-control mb-4 shadow-none" accept="image/*">
+                <input type="file" class="form-control mb-4 shadow-none" accept="image/*" id="field_image2">
               </div>
               <div class="text-right mt-3">
-                <button type="button" class="btn btn-warning">Save</button>
-                <button type="button" class="btn btn-info">Cancel</button>
+                <button type="button" class="btn btn-warning" id="field_save_btn" onclick="saveField()">Save</button>
+                <button type="button" class="btn btn-info" id="field_cancel_btn">Cancel</button>
               </div>
             </div>
           </div>
@@ -982,6 +986,8 @@
   <script src="../Green-Shadow-front-end/js/login.js"></script>
   <!-- script js -->
   <script src="/Green-Shadow-front-end/js/script.js"></script>
+  <!-- Controllers -->
+   <script src="/Green-Shadow-front-end/controllers/FieldController.js"></script>
 </body>
 
 </html>

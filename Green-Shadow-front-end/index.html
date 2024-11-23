@@ -290,25 +290,23 @@
             <div class="card-body">
               <div class="form-group">
                 <label class="form-label">Common Name</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter common name of the crop">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter common name of the crop" id="crop_common_name">
               </div>
               <div class="form-group">
                 <label class="form-label">Scientific Name</label>
-                <input type="text" class="form-control mb-4 shadow-none"
-                  placeholder="Enter scientific name of the crop">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter scientific name of the crop" id="crop_scientific_name">
               </div>
               <div class="form-group">
                 <label class="form-label">Crop Image</label>
-                <input type="file" class="form-control mb-4 shadow-none" accept="image/*">
+                <input type="file" class="form-control mb-4 shadow-none" accept="image/*" id="crop_image">
               </div>
               <div class="form-group">
                 <label class="form-label">Category</label>
-                <input type="text" class="form-control mb-4 shadow-none"
-                  placeholder="Enter crop category (e.g., Cereal)">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter crop category (e.g., Cereal)" id="crop_category">
               </div>
               <div class="form-group">
                 <label class="form-label">Season</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter crop season">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter crop season" id="crop_season">
               </div>
               <div class="form-group">
                 <label class="form-label">Field Details</label>
@@ -319,8 +317,8 @@
                 </select>
               </div>
               <div class="text-right mt-3">
-                <button type="button" class="btn btn-warning">Save</button>
-                <button type="button" class="btn btn-info">Cancel</button>
+                <button type="button" class="btn btn-warning" onclick="saveCrop()">Save</button>
+                <button type="button" class="btn btn-info" onclick="clearFields()">Cancel</button>
               </div>
             </div>
           </div>

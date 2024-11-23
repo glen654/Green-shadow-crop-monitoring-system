@@ -21,12 +21,23 @@ function saveField(){
         processData: false,
         data: formData,
         success: function (result){
+            clear();
             console.log(result);
             alert("Field Save Successfull");
         },
         error: function (result){
+            clear();
             console.log(result);
             alert("Field Save Unsuccessfull");
         }
     });
+}
+
+function clear(){
+    $("#field_name").clear();
+    $("#field_location_x").clear();
+    $("#field_location_y").clear();
+    $("#field_size").clear();
+    $("#field_image1").clear();
+    $("#field_image2").clear();
 }

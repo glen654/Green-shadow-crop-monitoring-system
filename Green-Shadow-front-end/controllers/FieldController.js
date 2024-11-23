@@ -21,23 +21,23 @@ function saveField(){
         processData: false,
         data: formData,
         success: function (result){
-            clear();
+            clearFields();
             console.log(result);
             alert("Field Save Successfull");
         },
         error: function (result){
-            clear();
+            clearFields();
             console.log(result);
             alert("Field Save Unsuccessfull");
         }
     });
 }
 
-function clear(){
-    $("#field_name").clear();
-    $("#field_location_x").clear();
-    $("#field_location_y").clear();
-    $("#field_size").clear();
-    $("#field_image1").clear();
-    $("#field_image2").clear();
+function clearFields(){
+    $("#field_name").val('');
+    $("#field_location_x").val('');
+    $("#field_location_y").val('');
+    $("#field_size").val('');
+    $("#field_image1").val('');
+    $("#field_image2").val('');
 }

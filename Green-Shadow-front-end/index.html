@@ -158,19 +158,20 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Field Location (Coordinate)</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates" id="field_location_x">
+                <input type="number" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates" id="field_location_x">
               </div>
               <div class="form-group">
                 <label class="form-label">Field Location (Coordinate)</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates" id="field_location_y">
+                <input type="number" class="form-control mb-4 shadow-none" placeholder="Enter GPS coordinates" id="field_location_y">
               </div>
               <div class="form-group">
                 <label class="form-label">Extent Size (sq. m)</label>
-                <input type="number" class="form-control mb-4 shadow-none" placeholder="Enter extent size in sq. m" id="field_size">
+                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter extent size in sq. m" id="field_size">
               </div>
               <div class="form-group">
                 <label class="form-label">Crops</label>
                 <select id="crop-type" class="form-control mb-4 shadow-none">
+                  <option value="banana" selected>No Crops</option>
                   <option value="banana">Banana</option>
                   <option value="papaya">Papaya</option>
                   <option value="guava">Guava</option>
@@ -179,6 +180,7 @@
               <div class="form-group">
                 <label class="form-label">Staff</label>
                 <select id="staff-type" class="form-control mb-4 shadow-none">
+                  <option value="perera" selected>No Staff Assigned</option>
                   <option value="perera">Perera</option>
                   <option value="silva">Silva</option>
                   <option value="mendis">Mendis</option>

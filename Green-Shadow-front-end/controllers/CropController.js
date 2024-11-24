@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    fetchFieldNames();
+})
+
 function saveCrop(){
     const formData = new FormData();
 
@@ -17,12 +21,34 @@ function saveCrop(){
         success: function (result){
             clearFields();
             console.log(result);
-            alert("Field Save Successfull");
+            alert("Crop Save Successfull");
         },
         error: function (result){
             clearFields();
             console.log(result);
-            alert("Field Save Unsuccessfull");
+            alert("Crop Save Unsuccessfull");
+        }
+    });
+}
+
+function fetchFieldNames(){
+    $.ajax({
+        url: " http://localhost:5050/green-shadow/api/v1/field/getallfieldnames",
+        type: "GET",
+        contentType: "application/json",
+        success: function (response){
+            console.log('Field name: ', response);
+            
+            response.forEach(field => {
+                console.log(field);
+                $("#field-details").append(
+                    $('<option>', {value: field, text: field})
+                );
+            });
+        },
+        error: function (xhr, status, error){
+            console.error('Error fetching field names:', status, error);
+            
         }
     });
 }

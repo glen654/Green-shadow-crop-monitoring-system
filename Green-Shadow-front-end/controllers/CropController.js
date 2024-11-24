@@ -8,9 +8,9 @@ function saveCrop(){
     formData.append("common_name", $("#crop_common_name").val());
     formData.append("scientific_name", $("#crop_scientific_name").val());
     formData.append("crop_image", $("#crop_image")[0].files[0]);
-    formData.append("category", $("#category").val());
+    formData.append("category", $("#crop_category").val());
     formData.append("season", $("#crop_season").val());
-    formData.append("field_name", $("field_details").val());
+    formData.append("field_name", $("#field_details").val());
 
     $.ajax({
         url:" http://localhost:5050/green-shadow/api/v1/crop",
@@ -41,7 +41,7 @@ function fetchFieldNames(){
             
             response.forEach(field => {
                 console.log(field);
-                $("#field-details").append(
+                $("#field_details").append(
                     $('<option>', {value: field, text: field})
                 );
             });

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    fetchFieldNames();
+    fetchFieldNames("field_details");
 })
 
 function saveCrop(){
@@ -27,28 +27,6 @@ function saveCrop(){
             clearFields();
             console.log(result);
             alert("Crop Save Unsuccessfull");
-        }
-    });
-}
-
-function fetchFieldNames(){
-    $.ajax({
-        url: " http://localhost:5050/green-shadow/api/v1/field/getallfieldnames",
-        type: "GET",
-        contentType: "application/json",
-        success: function (response){
-            console.log('Field name: ', response);
-            
-            response.forEach(field => {
-                console.log(field);
-                $("#field_details").append(
-                    $('<option>', {value: field, text: field})
-                );
-            });
-        },
-        error: function (xhr, status, error){
-            console.error('Error fetching field names:', status, error);
-            
         }
     });
 }

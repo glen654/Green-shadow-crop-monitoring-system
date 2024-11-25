@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    fetchFieldNames("field_details");
-})
-
 function saveCrop(){
     const formData = new FormData();
 

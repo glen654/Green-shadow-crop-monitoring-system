@@ -1,8 +1,3 @@
-$(document).ready(function () {
-    fetchFieldNames("field_name");
-})
-
-
 function saveStaff(){
     var first_name = $("#first_name").val();
     var last_name = $("#last_name").val();

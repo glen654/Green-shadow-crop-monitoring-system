@@ -35,12 +35,29 @@ function saveStaff(){
             "vehicles": vehicles
         }),
         success: function (result){
+            clearStaffForm();
             console.log(result);
             alert("Staff member successfully saved");
         },
         error: function (result){
+            clearStaffForm();
             alert("Staff member save unsuccessfull");
             console.log(result);
         }
     });
+}
+
+function clearStaffForm() {
+    $("#first_name").val('');
+    $("#last_name").val('');
+    $("#designation").val('');
+    $("#gender").val('');
+    $("#joined_date").val('');
+    $("#dob").val('');
+    $("#address").val('');
+    $("#contact").val('');
+    $("#email").val('');
+    $("#role").val('');
+    $("#staff_field_details").val('');
+    $("#vehicle_name").val('');
 }

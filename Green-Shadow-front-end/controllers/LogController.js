@@ -54,3 +54,8 @@ function fetchStaffNames(){
         }
     });
 }
+
+
+function saveLog(){
+    
+}

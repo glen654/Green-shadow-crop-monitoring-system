@@ -1,6 +1,5 @@
 $(document).ready(function () {
     fetchCropNames();
-    fetchStaffNames();
 })
 
 function fetchCropNames(){
@@ -29,33 +28,30 @@ function fetchCropNames(){
     });
 }
 
-function fetchStaffNames(){
-    $.ajax({
-        url: " http://localhost:5050/green-shadow/api/v1/staff/getallstaffnames",
-        type: "GET",
-        contentType: "application/json",
-        success: function (response){
-            console.log('Staff name: ', response);
-
-            $("#log_staff_details").empty().append(
-                $('<option>', { value: "", text: "Select Staff Member" })
-            );
-            
-            response.forEach(staff => {
-                console.log(staff);
-                $("#log_staff_details").append(
-                    $('<option>', {value: staff, text: staff})
-                );
-            });
-        },
-        error: function (xhr, status, error){
-            console.error('Error fetching staff member names:', status, error);
-            
-        }
-    });
-}
-
 
 function saveLog(){
+    const formData = new FormData();
+
+    formData.append("logDate", $("#log_date").val());
+    formData.append("logDetails", $("#log_desc").val());
+    formData.append("observedImage", $("#log_image")[0].files[0]);
+    formData.append("fields[]", $("#log_field_details").val());
+    formData.append("crops[]", $("#log_crop_details").val());
+    formData.append("staff[]", $("#log_staff_details").val());
     
+    $.ajax({
+        url:"http://localhost:5050/green-shadow/api/v1/log",
+        method: "POST",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (result){
+            console.log(result);
+            alert("Log Save Successfull");
+        },
+        error: function (result){
+            console.log(result);
+            alert("Log Save Unsuccessfull");
+        }
+    });
 }

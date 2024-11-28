@@ -11,8 +11,10 @@ function saveStaff(){
     var role = $("#role").val();
     var field_name = $("#staff_field_details").val();
     var vehicle_name = $("#vehicle_name").val();
-    console.log(field_name);
     
+    const fields = field_name ? [{ field_name: field_name }] : [];
+
+    const vehicles = vehicle_name ? [{ vehicle_name: vehicle_name }] : [];
 
     $.ajax({
         url: " http://localhost:5050/green-shadow/api/v1/staff",
@@ -29,8 +31,8 @@ function saveStaff(){
             "contact_no": contact,
             "email": email,
             "role": role,
-            "fields": [{field_name}],
-            "vehicles": [{vehicle_name}]
+            "fields": fields,
+            "vehicles": vehicles
         }),
         success: function (result){
             console.log(result);

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     fetchFieldNames("field_details");
     fetchFieldNames("staff_field_details");
+    fetchFieldNames("log_field_details")
 })
 
 function fetchFieldNames(targetElementId){

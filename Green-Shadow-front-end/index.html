@@ -828,38 +828,32 @@
                   <div class="card-body">
                       <div class="form-group">
                           <label class="form-label">Name</label>
-                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter equipment name">
+                          <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter equipment name" id="equipment_name">
                       </div>
                       <div class="form-group">
                           <label class="form-label">Type</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="electrical">Electrical</option>
-                              <option value="mechanical">Mechanical</option>
+                          <select class="form-control mb-4 shadow-none" id="equipment_type">
+                              <option value="" selected>Select Equipment Type</option>
+                              <option value="ELECTRICAL">Electrical</option>
+                              <option value="MECHANICAL">Mechanical</option>
                           </select>
                       </div>
                       <div class="form-group">
                           <label class="form-label">Status</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="available">Available</option>
-                              <option value="not_available">Not Available</option>
+                          <select class="form-control mb-4 shadow-none" id="equipment_status">
+                              <option value="" selected>Status</option>
+                              <option value="AVAILABLE">Available</option>
+                              <option value="UNAVAILABLE">Unavailable</option>
                           </select>
                       </div>
                       <div class="form-group">
                           <label class="form-label">Assigned Staff</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="perera">Perera</option>
-                              <option value="silva">Silva</option>
-                              <option value="mendis">Mendis</option>
-                              <option value="na">N/A</option>
+                          <select class="form-control mb-4 shadow-none" id="equip_staff_details">
                           </select>
                       </div>
                       <div class="form-group">
                           <label class="form-label">Assigned Field</label>
-                          <select class="form-control mb-4 shadow-none">
-                              <option value="field1">Field Name 1</option>
-                              <option value="field2">Field Name 2</option>
-                              <option value="field3">Field Name 3</option>
-                              <option value="na">N/A</option>
+                          <select class="form-control mb-4 shadow-none" id="equip_field_details">
                           </select>
                       </div>
                       <div class="text-right mt-3">
@@ -954,6 +948,7 @@
    <script src="/Green-Shadow-front-end/controllers/StaffController.js"></script>
    <script src="/Green-Shadow-front-end/controllers/LogController.js"></script>
    <script src="/Green-Shadow-front-end/controllers/VehicleController.js"></script>
+   <script src="/Green-Shadow-front-end/controllers/EquipmentController.js"></script>
 </body>
 
 </html>

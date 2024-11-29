@@ -35,9 +35,9 @@ function saveLog(){
     formData.append("logDate", $("#log_date").val());
     formData.append("logDetails", $("#log_desc").val());
     formData.append("observedImage", $("#log_image")[0].files[0]);
-    formData.append("fields[]", $("#log_field_details").val());
-    formData.append("crops[]", $("#log_crop_details").val());
-    formData.append("staff[]", $("#log_staff_details").val());
+    formData.append("fields", $("#log_field_details").val());
+    formData.append("crops", $("#log_crop_details").val());
+    formData.append("staff", $("#log_staff_details").val());
     
     $.ajax({
         url:"http://localhost:5050/green-shadow/api/v1/log",

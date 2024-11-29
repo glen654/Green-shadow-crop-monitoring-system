@@ -1,3 +1,44 @@
+$(document).ready(function() {
+    loadFields();
+});
+
+function loadFields(){
+    $.ajax({
+        url: 'http://localhost:5050/green-shadow/api/v1/field',
+        type: 'GET',           
+        contentType: 'application/json', 
+        success: function(fields) {
+            console.log("Fields loaded:", fields);
+            $("#fields-table").empty();
+            
+            fields.forEach(function(field) {
+                var record = `
+                    <tr>
+                        <td class="field-name-value">${field.field_name}</td>
+                        <td class="extent-size-value">${field.extent_size}</td>
+                        <td class="field-location-value">${field.location}</td>
+                        <td class="field-image1-value">
+                            <img src="data:image/png;base64,${field.field_image1}" alt="Field Image 1" style="width: 100px; height: 100px; object-fit: cover;">
+                        </td>
+                        <td>
+                            <button class="btn btn-primary btn-sm update-button">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-button">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+                $("#fields-table").append(record);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Failed to load fields:", error);
+            alert("An error occurred while loading the field data.");
+        }
+    });
+}
+
 function saveField(){
     const formData = new FormData(); 
     

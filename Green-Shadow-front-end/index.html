@@ -169,24 +169,6 @@
                 <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter extent size in sq. m" id="field_size">
               </div>
               <div class="form-group">
-                <label class="form-label">Crops</label>
-                <select id="crop-type" class="form-control mb-4 shadow-none">
-                  <option value="banana" selected>No Crops</option>
-                  <option value="banana">Banana</option>
-                  <option value="papaya">Papaya</option>
-                  <option value="guava">Guava</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Staff</label>
-                <select id="staff-type" class="form-control mb-4 shadow-none">
-                  <option value="perera" selected>No Staff Assigned</option>
-                  <option value="perera">Perera</option>
-                  <option value="silva">Silva</option>
-                  <option value="mendis">Mendis</option>
-                </select>
-              </div>
-              <div class="form-group">
                 <label class="form-label">Field Image 1</label>
                 <input type="file" class="form-control mb-4 shadow-none" accept="image/*" id="field_image1">
               </div>
@@ -213,60 +195,11 @@
                     <th scope="col">Field Name</th>
                     <th scope="col">Field Location</th>
                     <th scope="col">Extent Size</th>
-                    <th scope="col">Crops</th>
-                    <th scope="col">Staff</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Field Name 1</td>
-                    <td>Location 1</td>
-                    <td>20 sq. m</td>
-                    <td>Banana</td>
-                    <td>Perera</td>
-                    <td>
-                      <a href="#" class="text-info" title="Update">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <a href="#" class="text-danger" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Field Name 2</td>
-                    <td>Location 2</td>
-                    <td>30 sq. m</td>
-                    <td>Papaya</td>
-                    <td>Silva</td>
-                    <td>
-                      <a href="#" class="text-info" title="Update">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <a href="#" class="text-danger" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Field Name 3</td>
-                    <td>Location 3</td>
-                    <td>25 sq. m</td>
-                    <td>Guava</td>
-                    <td>Mendis</td>
-                    <td>
-                      <a href="#" class="text-info" title="Update">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <a href="#" class="text-danger" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
+                <tbody id="fields-table">
+                  
                 </tbody>
               </table>
             </div>

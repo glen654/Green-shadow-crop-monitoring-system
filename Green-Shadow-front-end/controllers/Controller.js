@@ -4,6 +4,8 @@ $(document).ready(function () {
     fetchFieldNames("log_field_details");
     fetchStaffNames("log_staff_details");
     fetchStaffNames("vehicle_staff_details");
+    fetchFieldNames("equip_field_details");
+    fetchStaffNames("equip_staff_details");
 })
 
 function fetchFieldNames(targetElementId){

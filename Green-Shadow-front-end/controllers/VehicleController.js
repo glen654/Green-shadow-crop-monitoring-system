@@ -19,6 +19,7 @@ function loadVehicle(){
                         <td class="vehicle-fuel-value">${vehicle.fuelType}</td>
                         <td class="vehicle-status-value">${vehicle.status}</td>
                         <td class="vehicle-remarks-value">${vehicle.remarks}</td>
+                        <td class="vehicle-staff-value">${vehicle.assigned_staff.first_name}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>

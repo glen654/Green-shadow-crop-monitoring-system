@@ -23,6 +23,7 @@ function loadStaff(){
                         <td class="staff-contact-value">${staff.contact_no}</td>
                         <td class="staff-email-value">${staff.email}</td>
                         <td class="staff-role-value">${staff.role}</td>
+                        <td class="staff-field-value">${staff.fields.field_name}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>

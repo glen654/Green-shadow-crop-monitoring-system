@@ -2,6 +2,8 @@ $(document).ready(function() {
     loadFields();
 });
 
+var recordIndex;
+
 function loadFields(){
     $.ajax({
         url: 'http://localhost:5050/green-shadow/api/v1/field',
@@ -14,7 +16,7 @@ function loadFields(){
             fields.forEach(function(field) {
                 const locationString = `(${field.location.x}, ${field.location.y})`;
                 var record = `
-                    <tr>
+                    <tr style="cursor:pointer">
                         <td class="field-image1-value">
                             <img src="data:image/png;base64,${field.field_image1}" alt="Field Image 1" style="width: 100px; height: 100px; object-fit: cover;">
                         </td>
@@ -74,6 +76,24 @@ function saveField(){
         }
     });
 }
+
+$("#fields-table").on('click','tr',function (){
+    let index = $(this).index();
+    recordIndex = index;
+
+    let field_name = $(this).find(".field-name-value").text();
+    let field_location = $(this).find(".field-location-value").text();
+    let [x, y] = field_location.split(",");
+    x = x.trim();
+    y = y.trim();
+
+    let extent_size = $(this).find(".extent-size-value").text();
+
+    $("#field_name").val(field_name);
+    $("#field_location_x").val(x);
+    $("#field_location_y").val(y);
+    $("#field_size").val(extent_size);
+});
 
 function clearFields(){
     $("#field_name").val('');

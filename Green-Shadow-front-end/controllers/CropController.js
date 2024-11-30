@@ -21,6 +21,7 @@ function loadCrops(){
                         <td class="crop-scientific-value">${crop.scientific_name}</td>
                         <td class="crop-category-value">${crop.category}</td>
                         <td class="crop-season-value">${crop.season}</td>
+                        <td class="crop-field-value">${crop.field.field_name}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>

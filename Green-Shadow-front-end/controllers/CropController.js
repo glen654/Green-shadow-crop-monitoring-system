@@ -1,3 +1,45 @@
+$(document).ready(function() {
+    loadCrops();
+});
+
+function loadCrops(){
+    $.ajax({
+        url: 'http://localhost:5050/green-shadow/api/v1/crop',
+        type: 'GET',           
+        contentType: 'application/json', 
+        success: function(crops) {
+            console.log("Crops loaded:", crops);
+            $("#crop-table").empty();
+            
+            crops.forEach(function(crop) {
+                var record = `
+                    <tr>
+                        <td class="crop-image-value">
+                            <img src="data:image/png;base64,${crop.crop_image}" alt="Field Image 1" style="width: 100px; height: 100px; object-fit: cover;">
+                        </td>
+                        <td class="crop-name-value">${crop.common_name}</td>
+                        <td class="crop-scientific-value">${crop.scientific_name}</td>
+                        <td class="crop-category-value">${crop.category}</td>
+                        <td class="crop-season-value">${crop.season}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm update-button">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-button">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+                $("#crop-table").append(record);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Failed to load crops:", error);
+            alert("An error occurred while loading the crop data.");
+        }
+    });
+}
+
 function saveCrop(){
     const formData = new FormData();
 

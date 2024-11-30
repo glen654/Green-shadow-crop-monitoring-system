@@ -344,12 +344,6 @@
                 <select id="staff_field_details" class="form-control mb-4 shadow-none">
                 </select>
               </div>
-              <div class="form-group">
-                <label class="form-label">Vehicle</label>
-                <select class="form-control mb-4 shadow-none" id="vehicle_name">
-                  <option value="na">Select a Vehicle</option>
-                </select>
-              </div>
               <div class="text-right mt-3">
                 <button type="button" class="btn btn-warning" onclick="saveStaff()">Save</button>
                 <button type="button" class="btn btn-info">Cancel</button>
@@ -365,8 +359,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
+                    <th scope="col">Full Name</th>
                     <th scope="col">Designation</th>
                     <th scope="col">Gender</th>
                     <th scope="col">Joined Date</th>
@@ -374,71 +367,11 @@
                     <th scope="col">Contact No.</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
-                    <th scope="col">Allocated Field(s)</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>Manager</td>
-                    <td>Male</td>
-                    <td>2020-01-15</td>
-                    <td>1985-05-23</td>
-                    <td>123-456-7890</td>
-                    <td>john.doe@example.com</td>
-                    <td>Admin</td>
-                    <td>Field Name 1</td>
-                    <td>
-                      <a href="#" class="text-info" title="Update">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <a href="#" class="text-danger" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Jane</td>
-                    <td>Smith</td>
-                    <td>Field Worker</td>
-                    <td>Female</td>
-                    <td>2021-03-22</td>
-                    <td>1990-07-15</td>
-                    <td>234-567-8901</td>
-                    <td>jane.smith@example.com</td>
-                    <td>Field Worker</td>
-                    <td>N/A</td>
-                    <td>
-                      <a href="#" class="text-info" title="Update">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <a href="#" class="text-danger" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Bob</td>
-                    <td>Johnson</td>
-                    <td>Supervisor</td>
-                    <td>Male</td>
-                    <td>2019-08-10</td>
-                    <td>1982-11-30</td>
-                    <td>345-678-9012</td>
-                    <td>bob.johnson@example.com</td>
-                    <td>Manager</td>
-                    <td>Field Name 2</td>
-                    <td>
-                      <a href="#" class="text-info" title="Update">
-                        <i class="fas fa-pencil-alt"></i>
-                      </a>
-                      <a href="#" class="text-danger" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>
-                    </td>
-                  </tr>
+                <tbody id="staff-table">
+                 
                 </tbody>
               </table>
             </div>

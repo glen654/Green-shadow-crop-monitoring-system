@@ -13,7 +13,7 @@ function loadCrops(){
             
             crops.forEach(function(crop) {
                 var record = `
-                    <tr>
+                    <tr style="cursor: pointer">
                         <td class="crop-image-value">
                             <img src="data:image/png;base64,${crop.crop_image}" alt="Field Image 1" style="width: 100px; height: 100px; object-fit: cover;">
                         </td>
@@ -61,11 +61,64 @@ function saveCrop(){
             clearFields();
             console.log(result);
             alert("Crop Save Successfull");
+            loadCrops();
         },
         error: function (result){
             clearFields();
             console.log(result);
             alert("Crop Save Unsuccessfull");
+            loadCrops();
+        }
+    });
+}
+
+$("#crop-table").on('click','tr',function (){
+    let index = $(this).index();
+    recordIndex = index;
+
+    let common_name = $(this).find(".crop-name-value").text();
+    let scientific_name = $(this).find(".crop-scientific-value").text();
+    let category = $(this).find(".crop-category-value").text();
+    let season = $(this).find(".crop-season-value").text();
+    let field = $(this).find(".crop-field-value").text();
+
+    $("#crop_common_name").val(common_name);
+    $("#crop_scientific_name").val(scientific_name);
+    $("#crop_category").val(category);
+    $("#crop_season").val(season);
+    $("#field_details").val(field)
+});
+
+function updateCrop(){
+    const formData = new FormData();
+
+    formData.append("common_name", $("#crop_common_name").val());
+    formData.append("scientific_name", $("#crop_scientific_name").val());
+    formData.append("crop_image", $("#crop_image")[0].files[0]);
+    formData.append("category", $("#crop_category").val());
+    formData.append("season", $("#crop_season").val());
+    formData.append("field_name", $("#field_details").val());
+
+    const commonName = $("#crop_common_name").val();
+    const url = `http://localhost:5050/green-shadow/api/v1/crop/${commonName}`;
+
+    $.ajax({
+        url: url,
+        method: "PATCH",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (result){
+            clearFields();
+            console.log(result);
+            alert("Crop update Successfull");
+            loadCrops();
+        },
+        error: function (result){
+            clearFields();
+            console.log(result);
+            alert("Crop update Unsuccessfull");
+            loadCrops();
         }
     });
 }

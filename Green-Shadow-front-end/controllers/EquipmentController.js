@@ -1,3 +1,44 @@
+$(document).ready(function() {
+    loadEquipment();
+});
+
+function loadEquipment(){
+    $.ajax({
+        url: 'http://localhost:5050/green-shadow/api/v1/equipment',
+        type: 'GET',           
+        contentType: 'application/json', 
+        success: function(equipment) {
+            console.log("Equipment loaded:", equipment);
+            $("#equipment-table").empty();
+            
+            equipment.forEach(function(equipment) {
+                var record = `
+                    <tr>
+                        <td class="equip-name-value">${equipment.name}</td>
+                        <td class="equip-type-value">${equipment.type}</td>
+                        <td class="equip-status-value">${equipment.status}</td>
+                        <td class="equip-staff-value">${equipment.assigned_staff.first_name}</td>
+                        <td class="equip-field-value">${equipment.assigned_field.field_name}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm update-button">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm delete-button">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>`;
+                $("#equipment-table").append(record);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Failed to load equipment:", error);
+            alert("An error occurred while loading the equipment data.");
+        }
+    });
+}
+
+
 function saveEquipment(){
     var equipment_name = $("#equipment_name").val();
     var equipment_type = $("#equipment_type").val();

@@ -12,14 +12,15 @@ function loadFields(){
             $("#fields-table").empty();
             
             fields.forEach(function(field) {
+                const locationString = `(${field.location.x}, ${field.location.y})`;
                 var record = `
                     <tr>
-                        <td class="field-name-value">${field.field_name}</td>
-                        <td class="extent-size-value">${field.extent_size}</td>
-                        <td class="field-location-value">${field.location}</td>
                         <td class="field-image1-value">
                             <img src="data:image/png;base64,${field.field_image1}" alt="Field Image 1" style="width: 100px; height: 100px; object-fit: cover;">
                         </td>
+                        <td class="field-name-value">${field.field_name}</td>
+                        <td class="field-location-value">${locationString}</td>
+                        <td class="extent-size-value">${field.extent_size}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>

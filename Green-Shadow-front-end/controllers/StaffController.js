@@ -123,7 +123,7 @@ $("#staff-table").on('click','tr',function (){
 });
 
 function updateStaff(){
-    var first_name = $("#first_name").val();
+    var firstName = $("#first_name").val();
     var last_name = $("#last_name").val();
     var designation = $("#designation").val();
     var gender = $("#gender").val();
@@ -137,37 +137,48 @@ function updateStaff(){
 
     const fields = field_name ? [{ field_name: field_name }] : [];
 
-    const url = `http://localhost:5050/green-shadow/api/v1/staff/${first_name}`;
-
     $.ajax({
-        url: url,
-        type: "PATCH",
-        contentType: 'application/json',
-        "data":JSON.stringify({
-            "first_name": first_name,
-            "last_name": last_name,
-            "designation": designation,
-            "gender": gender,
-            "joined_date": joined_date,
-            "dob": dob,
-            "address": address,
-            "contact_no": contact,
-            "email": email,
-            "role": role,
-            "fields": fields
-        }),
-        success: function (result){
-            clearStaffForm();
-            console.log(result);
-            alert("Staff member successfully updated");
-            loadStaff();
+        url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
+        type: "GET",
+        success: function (staffId) {
+            console.log("Fetched staff id:", staffId);
+  
+            const updatedStaffData = {
+                "id": staffId,
+                "first_name": firstName,
+                "last_name": last_name,
+                "designation": designation,
+                "gender": gender,
+                "joined_date": joined_date,
+                "dob": dob,
+                "address": address,
+                "contact_no": contact,
+                "email": email,
+                "role": role,
+                "fields": fields
+           }
+  
+            $.ajax({
+                url: `http://localhost:5050/green-shadow/api/v1/staff/${staffId}`,
+                type: "PATCH",
+                contentType: "application/json",
+                data: JSON.stringify(updatedStaffData),
+                success: function () {
+                    clearStaffForm();
+                    alert("staff successfully updated");
+                    loadStaff();
+                },
+                error: function (error) {
+                    clearStaffForm();
+                    alert("staff update unsuccessful");
+                    console.error(error.responseText);
+                },
+            });
         },
-        error: function (result){
-            clearStaffForm();
-            alert("Staff member update unsuccessfull");
-            console.log(result);
-            loadStaff();
-        }
+        error: function (error) {
+            alert("Error fetching staff id: " + error.responseText);
+            console.error(error);
+        },
     });
 }
 

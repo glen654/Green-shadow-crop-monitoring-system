@@ -304,13 +304,20 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Designation</label>
-                <input type="text" class="form-control mb-4 shadow-none" placeholder="Enter designation" id="designation">
+                <select class="form-control mb-4 shadow-none" id="designation">
+                  <option value="" selected>Select a Desgination</option>
+                  <option value="ADMINISTRATIVE">Administrative</option>
+                  <option value="FIELD_WORKER">Field Worker</option>
+                  <option value="MANAGER">Manager</option>
+                  <option value="SCIENTIST">Scientist</option>
+                </select>
               </div>
               <div class="form-group">
                 <label class="form-label">Gender</label>
                 <select class="form-control mb-4 shadow-none" id="gender">
-                  <option value="MALE">MALE</option>
-                  <option value="FEMALE">FEMALE</option>
+                  <option value="" selected>Select a Gender</option>
+                  <option value="MALE">Male</option>
+                  <option value="FEMALE">Female</option>
                 </select>
               </div>
               <div class="form-group">
@@ -336,10 +343,11 @@
               <div class="form-group">
                 <label class="form-label">Role</label>
                 <select class="form-control mb-4 shadow-none" id="role">
-                  <option value="ADMIN">ADMINISTRATIVE</option>
-                  <option value="FIELD_WORKER">FIELD WORKER</option>
-                  <option value="MANAGER">MANAGER</option>
-                  <option value="SCIENTIST">SCIENTIST</option>
+                  <option value="" selected>Select a Role</option>
+                  <option value="ADMINISTRATIVE">Administrative</option>
+                  <option value="FIELD_WORKER">Field Worker</option>
+                  <option value="MANAGER">Manager</option>
+                  <option value="SCIENTIST">Scientist</option>
                 </select>
               </div>
               <div class="form-group">
@@ -349,7 +357,7 @@
               </div>
               <div class="text-right mt-3">
                 <button type="button" class="btn btn-warning" onclick="saveStaff()">Save</button>
-                <button type="button" class="btn btn-warning" onclick="updateStaff()">Update</button>
+                <button type="button" class="btn btn-primary" onclick="updateStaff()">Update</button>
                 <button type="button" class="btn btn-info">Cancel</button>
               </div>
             </div>
@@ -559,6 +567,7 @@
               </div>
               <div class="text-right mt-3">
                 <button type="button" class="btn btn-warning" onclick="saveVehicle()">Save</button>
+                <button type="button" class="btn btn-primary" onclick="updateVehicle()">Update</button>
                 <button type="button" class="btn btn-info" onclick="clearVehicleForm()">Cancel</button>
               </div>
             </div>

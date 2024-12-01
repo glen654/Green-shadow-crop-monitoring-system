@@ -2,6 +2,8 @@ $(document).ready(function() {
     loadCrops();
 });
 
+var recordIndex;
+
 function loadCrops(){
     $.ajax({
         url: 'http://localhost:5050/green-shadow/api/v1/crop',

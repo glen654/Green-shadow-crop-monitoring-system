@@ -2,6 +2,8 @@ $(document).ready(function() {
     loadStaff();
 });
 
+var recordIndex;
+
 function loadStaff(){
     $.ajax({
         url: 'http://localhost:5050/green-shadow/api/v1/staff',
@@ -80,11 +82,13 @@ function saveStaff(){
             clearStaffForm();
             console.log(result);
             alert("Staff member successfully saved");
+            loadStaff();
         },
         error: function (result){
             clearStaffForm();
             alert("Staff member save unsuccessfull");
             console.log(result);
+            loadStaff();
         }
     });
 }
@@ -131,6 +135,7 @@ function updateStaff(){
     var role = $("#role").val();
     var field_name = $("#staff_field_details").val();
 
+    const fields = field_name ? [{ field_name: field_name }] : [];
 
     const url = `http://localhost:5050/green-shadow/api/v1/staff/${first_name}`;
 
@@ -149,17 +154,19 @@ function updateStaff(){
             "contact_no": contact,
             "email": email,
             "role": role,
-            "fields": [{field_name}]
+            "fields": fields
         }),
         success: function (result){
             clearStaffForm();
             console.log(result);
-            alert("Staff member successfully saved");
+            alert("Staff member successfully updated");
+            loadStaff();
         },
         error: function (result){
             clearStaffForm();
-            alert("Staff member save unsuccessfull");
+            alert("Staff member update unsuccessfull");
             console.log(result);
+            loadStaff();
         }
     });
 }

@@ -105,6 +105,14 @@ function updateVehicle(){
     var assigned_staff = $("#vehicle_staff_details").val();
     var remarks = $("#remarks").val();
 
+    console.log(licenseNumber);
+    console.log(vehicle_category);
+    console.log(fuel_type);
+    console.log(status);
+    console.log(assigned_staff);
+    console.log(remarks);
+    
+
     const url = `http://localhost:5050/green-shadow/api/v1/vehicle/${licenseNumber}`;
 
     $.ajax({

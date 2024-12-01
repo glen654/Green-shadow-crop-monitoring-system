@@ -1,21 +1,21 @@
-$(document).ready(function() {
-    loadStaff();
+$(document).ready(function () {
+  loadStaff();
 });
 
 var recordIndex;
 
-function loadStaff(){
-    $.ajax({
-        url: 'http://localhost:5050/green-shadow/api/v1/staff',
-        type: 'GET',           
-        contentType: 'application/json', 
-        success: function(staff) {
-            console.log("Staff loaded:", staff);
-            $("#staff-table").empty();
-            
-            staff.forEach(function(staff) {
-                const fullName = staff.first_name + " " + staff.last_name;
-                var record = `
+function loadStaff() {
+  $.ajax({
+    url: "http://localhost:5050/green-shadow/api/v1/staff",
+    type: "GET",
+    contentType: "application/json",
+    success: function (staff) {
+      console.log("Staff loaded:", staff);
+      $("#staff-table").empty();
+
+      staff.forEach(function (staff) {
+        const fullName = staff.first_name + " " + staff.last_name;
+        var record = `
                     <tr style="cursor: pointer">
                         <td class="staff-name-value">${fullName}</td>
                         <td class="staff-designation-value">${staff.designation}</td>
@@ -36,163 +36,163 @@ function loadStaff(){
                             </button>
                         </td>
                     </tr>`;
-                $("#staff-table").append(record);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error("Failed to load staff:", error);
-            alert("An error occurred while loading the staff data.");
-        }
-    });
+        $("#staff-table").append(record);
+      });
+    },
+    error: function (xhr, status, error) {
+      console.error("Failed to load staff:", error);
+      alert("An error occurred while loading the staff data.");
+    },
+  });
 }
 
-function saveStaff(){
-    var first_name = $("#first_name").val();
-    var last_name = $("#last_name").val();
-    var designation = $("#designation").val();
-    var gender = $("#gender").val();
-    var joined_date = $("#joined_date").val();
-    var dob = $("#dob").val();
-    var address = $("#address").val();
-    var contact = $("#contact").val();
-    var email = $("#email").val();
-    var role = $("#role").val();
-    var field_name = $("#staff_field_details").val();
-    
-    const fields = field_name ? [{ field_name: field_name }] : [];
+function saveStaff() {
+  var first_name = $("#first_name").val();
+  var last_name = $("#last_name").val();
+  var designation = $("#designation").val();
+  var gender = $("#gender").val();
+  var joined_date = $("#joined_date").val();
+  var dob = $("#dob").val();
+  var address = $("#address").val();
+  var contact = $("#contact").val();
+  var email = $("#email").val();
+  var role = $("#role").val();
+  var field_name = $("#staff_field_details").val();
 
-    $.ajax({
-        url: " http://localhost:5050/green-shadow/api/v1/staff",
-        type: "POST",
-        contentType: 'application/json',
-        "data":JSON.stringify({
-            "first_name": first_name,
-            "last_name": last_name,
-            "designation": designation,
-            "gender": gender,
-            "joined_date": joined_date,
-            "dob": dob,
-            "address": address,
-            "contact_no": contact,
-            "email": email,
-            "role": role,
-            "fields": fields
-        }),
-        success: function (result){
-            clearStaffForm();
-            console.log(result);
-            alert("Staff member successfully saved");
-            loadStaff();
-        },
-        error: function (result){
-            clearStaffForm();
-            alert("Staff member save unsuccessfull");
-            console.log(result);
-            loadStaff();
-        }
-    });
+  const fields = field_name ? [{ field_name: field_name }] : [];
+
+  $.ajax({
+    url: " http://localhost:5050/green-shadow/api/v1/staff",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+      first_name: first_name,
+      last_name: last_name,
+      designation: designation,
+      gender: gender,
+      joined_date: joined_date,
+      dob: dob,
+      address: address,
+      contact_no: contact,
+      email: email,
+      role: role,
+      fields: fields,
+    }),
+    success: function (result) {
+      clearStaffForm();
+      console.log(result);
+      alert("Staff member successfully saved");
+      loadStaff();
+    },
+    error: function (result) {
+      clearStaffForm();
+      alert("Staff member save unsuccessfull");
+      console.log(result);
+      loadStaff();
+    },
+  });
 }
 
-$("#staff-table").on('click','tr',function (){
-    let index = $(this).index();
-    recordIndex = index;
+$("#staff-table").on("click", "tr", function () {
+  let index = $(this).index();
+  recordIndex = index;
 
-    let fullName = $(this).find(".staff-name-value").text();
-    let [firstName, lastName] = fullName.split(' ');
-    let designation = $(this).find(".staff-designation-value").text();
-    let gender = $(this).find(".staff-gender-value").text();
-    let joined_date = $(this).find(".staff-joinedDate-value").text();
-    let dob = $(this).find(".staff-dob-value").text();
-    let address = $(this).find(".staff-address-value").text();
-    let contact = $(this).find(".staff-contact-value").text();
-    let email = $(this).find(".staff-email-value").text();
-    let role = $(this).find(".staff-role-value").text();
-    let field = $(this).find(".staff-field-value").text();
+  let fullName = $(this).find(".staff-name-value").text();
+  let [firstName, lastName] = fullName.split(" ");
+  let designation = $(this).find(".staff-designation-value").text();
+  let gender = $(this).find(".staff-gender-value").text();
+  let joined_date = $(this).find(".staff-joinedDate-value").text();
+  let dob = $(this).find(".staff-dob-value").text();
+  let address = $(this).find(".staff-address-value").text();
+  let contact = $(this).find(".staff-contact-value").text();
+  let email = $(this).find(".staff-email-value").text();
+  let role = $(this).find(".staff-role-value").text();
+  let field = $(this).find(".staff-field-value").text();
 
-    $("#first_name").val(firstName);
-    $("#last_name").val(lastName);
-    $("#designation").val(designation);
-    $("#gender").val(gender);
-    $("#joined_date").val(joined_date);
-    $("#dob").val(dob);
-    $("#address").val(address);
-    $("#contact").val(contact);
-    $("#email").val(email);
-    $("#role").val(role);
-    $("#staff_field_details").val(field);
+  $("#first_name").val(firstName);
+  $("#last_name").val(lastName);
+  $("#designation").val(designation);
+  $("#gender").val(gender);
+  $("#joined_date").val(joined_date);
+  $("#dob").val(dob);
+  $("#address").val(address);
+  $("#contact").val(contact);
+  $("#email").val(email);
+  $("#role").val(role);
+  $("#staff_field_details").val(field);
 });
 
-function updateStaff(){
-    var firstName = $("#first_name").val();
-    var last_name = $("#last_name").val();
-    var designation = $("#designation").val();
-    var gender = $("#gender").val();
-    var joined_date = $("#joined_date").val();
-    var dob = $("#dob").val();
-    var address = $("#address").val();
-    var contact = $("#contact").val();
-    var email = $("#email").val();
-    var role = $("#role").val();
-    var field_name = $("#staff_field_details").val();
+function updateStaff() {
+  var firstName = $("#first_name").val();
+  var last_name = $("#last_name").val();
+  var designation = $("#designation").val();
+  var gender = $("#gender").val();
+  var joined_date = $("#joined_date").val();
+  var dob = $("#dob").val();
+  var address = $("#address").val();
+  var contact = $("#contact").val();
+  var email = $("#email").val();
+  var role = $("#role").val();
+  var field_name = $("#staff_field_details").val();
 
-    const fields = field_name ? [{ field_name: field_name }] : [];
+  const fields = field_name ? [{ field_name: field_name }] : [];
 
-    $.ajax({
-        url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
-        type: "GET",
-        success: function (staffId) {
-            console.log("Fetched staff id:", staffId);
-  
-            const updatedStaffData = {
-                "id": staffId,
-                "first_name": firstName,
-                "last_name": last_name,
-                "designation": designation,
-                "gender": gender,
-                "joined_date": joined_date,
-                "dob": dob,
-                "address": address,
-                "contact_no": contact,
-                "email": email,
-                "role": role,
-                "fields": fields
-           }
-  
-            $.ajax({
-                url: `http://localhost:5050/green-shadow/api/v1/staff/${staffId}`,
-                type: "PATCH",
-                contentType: "application/json",
-                data: JSON.stringify(updatedStaffData),
-                success: function () {
-                    clearStaffForm();
-                    alert("staff successfully updated");
-                    loadStaff();
-                },
-                error: function (error) {
-                    clearStaffForm();
-                    alert("staff update unsuccessful");
-                    console.error(error.responseText);
-                },
-            });
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
+    type: "GET",
+    success: function (staffId) {
+      console.log("Fetched staff id:", staffId);
+
+      const updatedStaffData = {
+        id: staffId,
+        first_name: firstName,
+        last_name: last_name,
+        designation: designation,
+        gender: gender,
+        joined_date: joined_date,
+        dob: dob,
+        address: address,
+        contact_no: contact,
+        email: email,
+        role: role,
+        fields: fields,
+      };
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/staff/${staffId}`,
+        type: "PATCH",
+        contentType: "application/json",
+        data: JSON.stringify(updatedStaffData),
+        success: function () {
+          clearStaffForm();
+          alert("staff successfully updated");
+          loadStaff();
         },
         error: function (error) {
-            alert("Error fetching staff id: " + error.responseText);
-            console.error(error);
+          clearStaffForm();
+          alert("staff update unsuccessful");
+          console.error(error.responseText);
         },
-    });
+      });
+    },
+    error: function (error) {
+      alert("Error fetching staff id: " + error.responseText);
+      console.error(error);
+    },
+  });
 }
 
 function clearStaffForm() {
-    $("#first_name").val('');
-    $("#last_name").val('');
-    $("#designation").val('');
-    $("#gender").val('');
-    $("#joined_date").val('');
-    $("#dob").val('');
-    $("#address").val('');
-    $("#contact").val('');
-    $("#email").val('');
-    $("#role").val('');
-    $("#staff_field_details").val('');
-    $("#vehicle_name").val('');
+  $("#first_name").val("");
+  $("#last_name").val("");
+  $("#designation").val("");
+  $("#gender").val("");
+  $("#joined_date").val("");
+  $("#dob").val("");
+  $("#address").val("");
+  $("#contact").val("");
+  $("#email").val("");
+  $("#role").val("");
+  $("#staff_field_details").val("");
+  $("#vehicle_name").val("");
 }

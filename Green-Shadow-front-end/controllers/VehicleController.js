@@ -95,6 +95,7 @@ $("#vehicle-table").on("click", "tr", function () {
   $("#remarks").val(remarks);
 });
 
+
 function updateVehicle() {
   var licenseNumber = $("#license_plate").val();
   var vehicle_category = $("#category").val();
@@ -103,55 +104,48 @@ function updateVehicle() {
   var assigned_staff = $("#vehicle_staff_details").val();
   var remarks = $("#remarks").val();
 
-  console.log(licenseNumber);
-  console.log(vehicle_category);
-  console.log(fuel_type);
-  console.log(status);
-  console.log(assigned_staff);
-  console.log(remarks);
+  $.ajax({
+      url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
+      type: "GET",
+      success: function (vehicleCode) {
+          console.log("Fetched vehicle code:", vehicleCode);
 
-//   $.ajax({
-//     url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
-//     type: "GET",
-//     success: function (data) {
-//       const vehicleCode = data.vehicleCode;
+          const updatedVehicleData = {
+              vehicle_code: vehicleCode, 
+              licensePlateNumber: licenseNumber,
+              vehicleCategory: vehicle_category,
+              fuelType: fuel_type,
+              status: status,
+              remarks: remarks,
+              assigned_staff: {
+                  first_name: assigned_staff,
+              },
+          };
 
-      const updatedVehicleData = {
-        licensePlateNumber: licenseNumber,
-        vehicleCategory: vehicle_category,
-        fuelType: fuel_type,
-        status: status,
-        remarks: remarks,
-        assigned_staff: {
-          first_name: assigned_staff,
-        },
-      };
-
-      const url = `http://localhost:5050/green-shadow/api/v1/vehicle/${licenseNumber}`;
-      $.ajax({
-        url: url,
-        type: "PUT",
-        contentType: "application/json",
-        data: JSON.stringify(updatedVehicleData),
-        success: function (result) {
-          clearVehicleForm();
-          console.log(result);
-          alert("Vehicle successfully updated");
-          loadVehicle();
-        },
-        error: function (error) {
-          clearVehicleForm();
-          alert("Vehicle update unsuccessfull");
-          console.log(error.responseText);
-          loadVehicle();
-        },
-      });
-    
-//     error: function (error) {
-//       alert("Error fetching vehicle ID: " + error.responseText);
-//     },
-//   });
+          $.ajax({
+              url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
+              type: "PATCH",
+              contentType: "application/json",
+              data: JSON.stringify(updatedVehicleData),
+              success: function () {
+                  clearVehicleForm();
+                  alert("Vehicle successfully updated");
+                  loadVehicle(); 
+              },
+              error: function (error) {
+                  clearVehicleForm();
+                  alert("Vehicle update unsuccessful");
+                  console.error(error.responseText);
+              },
+          });
+      },
+      error: function (error) {
+          alert("Error fetching vehicle code: " + error.responseText);
+          console.error(error);
+      },
+  });
 }
+
 
 function clearVehicleForm() {
   $("#license_plate").val("");

@@ -20,7 +20,6 @@ function loadEquipment() {
                         <td class="equip-type-value">${equipment.type}</td>
                         <td class="equip-status-value">${equipment.status}</td>
                         <td class="equip-staff-value">${equipment.assigned_staff.first_name}</td>
-                        <td class="equip-field-value">${equipment.assigned_field}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>
@@ -31,6 +30,19 @@ function loadEquipment() {
                         </td>
                     </tr>`;
         $("#equipment-table").append(record);
+      });
+      $("#equipment-table").on("click", ".update-button", function () {
+        const row = $(this).closest("tr");
+
+        const equip_name = row.find(".equip-name-value").text();
+        const equip_type = row.find(".equip-type-value").text();
+        const equip_status = row.find(".equip-status-value").text();
+        const equip_assigned_staff = row.find(".equip-staff-value").text();
+
+        $("#equipment_name").val(equip_name);
+        $("#equipment_type").val(equip_type);
+        $("#equipment_status").val(equip_status);
+        $("#equip_staff_details").val(equip_assigned_staff);
       });
     },
     error: function (xhr, status, error) {
@@ -75,23 +87,6 @@ function saveEquipment() {
     },
   });
 }
-
-$("#equipment-table").on("click", "tr", function () {
-  let index = $(this).index();
-  recordIndex = index;
-
-  let equipment_name = $(this).find(".equip-name-value").text();
-  let equipment_type = $(this).find(".equip-type-value").text();
-  let equipment_status = $(this).find(".equip-status-value").text();
-  let assigned_staff = $(this).find(".equip-staff-value").text();
-  let assigned_field = $(this).find(".equip-field-value").text();
-
-  $("#equipment_name").val(equipment_name);
-  $("#equipment_type").val(equipment_type);
-  $("#equipment_status").val(equipment_status);
-  $("#equip_staff_details").val(assigned_staff);
-  $("#equip_field_details").val(assigned_field);
-});
 
 function updateEquipment() {
   var equipmentName = $("#equipment_name").val();

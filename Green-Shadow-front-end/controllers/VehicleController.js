@@ -33,6 +33,24 @@ function loadVehicle() {
                     </tr>`;
         $("#vehicle-table").append(record);
       });
+
+      $("#vehicle-table").on("click", ".update-button", function () {
+        const row = $(this).closest("tr");
+
+        const license_plate_number = row.find(".vehicle-license-value").text();
+        const category = row.find(".vehicle-category-value").text();
+        const fuel = row.find(".vehicle-fuel-value").text();
+        const status = row.find(".vehicle-status-value").text();
+        const remarks = row.find(".vehicle-remarks-value").text();
+        const staff = row.find(".vehicle-staff-value").text();
+
+        $("#license_plate").val(license_plate_number);
+        $("#category").val(category);
+        $("#fuel_type").val(fuel);
+        $("#status").val(status);
+        $("#vehicle_staff_details").val(staff);
+        $("#remarks").val(remarks);
+      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load vehicle:", error);
@@ -95,7 +113,6 @@ $("#vehicle-table").on("click", "tr", function () {
   $("#remarks").val(remarks);
 });
 
-
 function updateVehicle() {
   var licenseNumber = $("#license_plate").val();
   var vehicle_category = $("#category").val();
@@ -105,47 +122,46 @@ function updateVehicle() {
   var remarks = $("#remarks").val();
 
   $.ajax({
-      url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
-      type: "GET",
-      success: function (vehicleCode) {
-          console.log("Fetched vehicle code:", vehicleCode);
+    url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
+    type: "GET",
+    success: function (vehicleCode) {
+      console.log("Fetched vehicle code:", vehicleCode);
 
-          const updatedVehicleData = {
-              vehicle_code: vehicleCode, 
-              licensePlateNumber: licenseNumber,
-              vehicleCategory: vehicle_category,
-              fuelType: fuel_type,
-              status: status,
-              remarks: remarks,
-              assigned_staff: {
-                  first_name: assigned_staff,
-              },
-          };
+      const updatedVehicleData = {
+        vehicle_code: vehicleCode,
+        licensePlateNumber: licenseNumber,
+        vehicleCategory: vehicle_category,
+        fuelType: fuel_type,
+        status: status,
+        remarks: remarks,
+        assigned_staff: {
+          first_name: assigned_staff,
+        },
+      };
 
-          $.ajax({
-              url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
-              type: "PATCH",
-              contentType: "application/json",
-              data: JSON.stringify(updatedVehicleData),
-              success: function () {
-                  clearVehicleForm();
-                  alert("Vehicle successfully updated");
-                  loadVehicle(); 
-              },
-              error: function (error) {
-                  clearVehicleForm();
-                  alert("Vehicle update unsuccessful");
-                  console.error(error.responseText);
-              },
-          });
-      },
-      error: function (error) {
-          alert("Error fetching vehicle code: " + error.responseText);
-          console.error(error);
-      },
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
+        type: "PATCH",
+        contentType: "application/json",
+        data: JSON.stringify(updatedVehicleData),
+        success: function () {
+          clearVehicleForm();
+          alert("Vehicle successfully updated");
+          loadVehicle();
+        },
+        error: function (error) {
+          clearVehicleForm();
+          alert("Vehicle update unsuccessful");
+          console.error(error.responseText);
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching vehicle code: " + error.responseText);
+      console.error(error);
+    },
   });
 }
-
 
 function clearVehicleForm() {
   $("#license_plate").val("");

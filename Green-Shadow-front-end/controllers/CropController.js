@@ -35,6 +35,21 @@ function loadCrops() {
                     </tr>`;
         $("#crop-table").append(record);
       });
+      $("#crop-table").on("click", ".update-button", function () {
+        const row = $(this).closest("tr");
+
+        const crop_name = row.find(".crop-name-value").text();
+        const scientific_name = row.find(".crop-scientific-value").text();
+        const category = row.find(".crop-category-value").text();
+        const season = row.find(".crop-season-value").text();
+        const field_name = row.find(".crop-field-value").text();
+
+        $("#crop_name").val(crop_name);
+        $("#crop_scientific_name").val(scientific_name);
+        $("#crop_category").val(category);
+        $("#crop_season").val(season);
+        $("#crop_field").val(field_name !== "Unassigned" ? field_name : "");
+      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load crops:", error);
@@ -73,23 +88,6 @@ function saveCrop() {
     },
   });
 }
-
-$("#crop-table").on("click", "tr", function () {
-  let index = $(this).index();
-  recordIndex = index;
-
-  let common_name = $(this).find(".crop-name-value").text();
-  let scientific_name = $(this).find(".crop-scientific-value").text();
-  let category = $(this).find(".crop-category-value").text();
-  let season = $(this).find(".crop-season-value").text();
-  let field = $(this).find(".crop-field-value").text();
-
-  $("#crop_common_name").val(common_name);
-  $("#crop_scientific_name").val(scientific_name);
-  $("#crop_category").val(category);
-  $("#crop_season").val(season);
-  $("#field_details").val(field);
-});
 
 function updateCrop() {
   const formData = new FormData();

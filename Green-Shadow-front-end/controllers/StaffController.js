@@ -26,7 +26,6 @@ function loadStaff() {
                         <td class="staff-contact-value">${staff.contact_no}</td>
                         <td class="staff-email-value">${staff.email}</td>
                         <td class="staff-role-value">${staff.role}</td>
-                        <td class="staff-field-value">${staff.fields.field_name}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>
@@ -37,6 +36,34 @@ function loadStaff() {
                         </td>
                     </tr>`;
         $("#staff-table").append(record);
+      });
+
+      $("#staff-table").on("click", ".update-button", function () {
+        const row = $(this).closest("tr");
+
+        const fullName = row.find(".staff-name-value").text();
+        const nameParts = fullName.split(" ");
+        const firstName = nameParts[0];
+        const lastName = nameParts.slice(1).join(" ");
+        const staffDesignation = row.find(".staff-designation-value").text();
+        const staffGender = row.find(".staff-gender-value").text();
+        const staffJoinedDate = row.find(".staff-joinedDate-value").text();
+        const staffDob = row.find(".staff-dob-value").text();
+        const staffAddress = row.find(".staff-address-value").text();
+        const staffContact = row.find(".staff-contact-value").text();
+        const staffEmail = row.find(".staff-email-value").text();
+        const staffRole = row.find(".staff-role-value").text();
+
+        $("#first_name").val(firstName);
+        $("#last_name").val(lastName);
+        $("#designation").val(staffDesignation);
+        $("#gender").val(staffGender);
+        $("#joinedDate").val(staffJoinedDate);
+        $("#dob").val(staffDob);
+        $("#address").val(staffAddress);
+        $("#contact").val(staffContact);
+        $("#email").val(staffEmail);
+        $("#role").val(staffRole);
       });
     },
     error: function (xhr, status, error) {
@@ -92,35 +119,6 @@ function saveStaff() {
     },
   });
 }
-
-$("#staff-table").on("click", "tr", function () {
-  let index = $(this).index();
-  recordIndex = index;
-
-  let fullName = $(this).find(".staff-name-value").text();
-  let [firstName, lastName] = fullName.split(" ");
-  let designation = $(this).find(".staff-designation-value").text();
-  let gender = $(this).find(".staff-gender-value").text();
-  let joined_date = $(this).find(".staff-joinedDate-value").text();
-  let dob = $(this).find(".staff-dob-value").text();
-  let address = $(this).find(".staff-address-value").text();
-  let contact = $(this).find(".staff-contact-value").text();
-  let email = $(this).find(".staff-email-value").text();
-  let role = $(this).find(".staff-role-value").text();
-  let field = $(this).find(".staff-field-value").text();
-
-  $("#first_name").val(firstName);
-  $("#last_name").val(lastName);
-  $("#designation").val(designation);
-  $("#gender").val(gender);
-  $("#joined_date").val(joined_date);
-  $("#dob").val(dob);
-  $("#address").val(address);
-  $("#contact").val(contact);
-  $("#email").val(email);
-  $("#role").val(role);
-  $("#staff_field_details").val(field);
-});
 
 function updateStaff() {
   var firstName = $("#first_name").val();

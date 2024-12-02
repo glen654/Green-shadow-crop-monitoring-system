@@ -51,6 +51,8 @@ function loadVehicle() {
         $("#vehicle_staff_details").val(staff);
         $("#remarks").val(remarks);
       });
+
+      
     },
     error: function (xhr, status, error) {
       console.error("Failed to load vehicle:", error);
@@ -162,6 +164,43 @@ function updateVehicle() {
     },
   });
 }
+
+function deleteVehicle() {
+  var licenseNumber = $("#license_plate").val();
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
+    type: "GET",
+    success: function (vehicleCode) {
+      console.log("Fetched vehicle Code:", vehicleCode);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
+        method:"DELETE",
+        contentType:"application/json",
+        success:function (results) {
+            console.log(results);
+            alert("Vehicle Deleted");
+            loadFields();
+        },
+        error:function (error) {
+            console.log("Status:", status);
+            console.log("Error:", error);
+            alert("Vehicle Delete unsuccessful");
+        }
+      });
+    },
+    error: function (error) {
+      alert("Error fetching equipment id: " + error.responseText);
+      console.error(error);
+    },
+  });
+}
+
+$("#vehicle-table").on("click", ".delete-button", function () {
+  deleteVehicle();
+});
+
 
 function clearVehicleForm() {
   $("#license_plate").val("");

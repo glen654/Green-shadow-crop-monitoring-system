@@ -51,6 +51,9 @@ function loadFields() {
         $("#field_location_y").val(y);
         $("#field_size").val(extent_size);
       });
+      $("#fields-table").on("click", ".delete-button", function () {
+        deleteField();
+      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load fields:", error);
@@ -134,6 +137,39 @@ function updateFields() {
     },
   });
 }
+
+function deleteField() {
+  var fieldName = $("#field_name").val();
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`,
+    type: "GET",
+    success: function (fieldCode) {
+      console.log("Fetched field Code:", fieldCode);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/field/${fieldCode}`,
+        method:"DELETE",
+        contentType:"application/json",
+        success:function (results) {
+            console.log(results);
+            alert("Field Deleted");
+            loadFields();
+        },
+        error:function (error) {
+            console.log("Status:", status);
+            console.log("Error:", error);
+            alert("Field Delete unsuccessful");
+        }
+      });
+    },
+    error: function (error) {
+      alert("Error fetching equipment id: " + error.responseText);
+      console.error(error);
+    },
+  });
+}
+
 
 function clearFields() {
   $("#field_name").val("");

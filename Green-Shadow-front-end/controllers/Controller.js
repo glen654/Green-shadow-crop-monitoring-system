@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 function fetchFieldNames(targetElementId) {
   $.ajax({
-    url: " http://localhost:5050/green-shadow/api/v1/field/getallfieldnames",
+    url: "http://localhost:5050/green-shadow/api/v1/field/getallfieldnames",
     type: "GET",
     contentType: "application/json",
     success: function (response) {

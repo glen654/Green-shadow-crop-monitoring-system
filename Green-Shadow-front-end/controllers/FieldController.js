@@ -52,7 +52,37 @@ function loadFields() {
         $("#field_size").val(extent_size);
       });
       $("#fields-table").on("click", ".delete-button", function () {
-        deleteField();
+        var fieldName = $("#field_name").val();
+        console.log(fieldName);
+
+        const url = `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`;
+        $.ajax({
+          url: url,
+          method: "GET",
+          success: function (fieldCode) {
+            console.log("Fetched field Code:", fieldCode);
+
+            $.ajax({
+              url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
+              method: "DELETE",
+              contentType: "application/json",
+              success: function (results) {
+                console.log(results);
+                alert("Field Deleted");
+                loadFields();
+              },
+              error: function (error) {
+                console.log("Status:", status);
+                console.log("Error:", error);
+                alert("Field Delete unsuccessful");
+              },
+            });
+          },
+          error: function (error) {
+            alert("Error fetching equipment id: " + error.responseText);
+            console.error(error);
+          },
+        });
       });
     },
     error: function (xhr, status, error) {
@@ -138,38 +168,39 @@ function updateFields() {
   });
 }
 
-function deleteField() {
-  var fieldName = $("#field_name").val();
+// function deleteField() {
+//   var fieldName = $("#field_name").val();
+//   console.log(fieldName);
 
-  $.ajax({
-    url: `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`,
-    type: "GET",
-    success: function (fieldCode) {
-      console.log("Fetched field Code:", fieldCode);
+//   const url = `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`;
+//   $.ajax({
+//     url: url,
+//     method: "GET",
+//     success: function (fieldCode) {
+//       console.log("Fetched field Code:", fieldCode);
 
-      $.ajax({
-        url: `http://localhost:5050/green-shadow/api/v1/field/${fieldCode}`,
-        method:"DELETE",
-        contentType:"application/json",
-        success:function (results) {
-            console.log(results);
-            alert("Field Deleted");
-            loadFields();
-        },
-        error:function (error) {
-            console.log("Status:", status);
-            console.log("Error:", error);
-            alert("Field Delete unsuccessful");
-        }
-      });
-    },
-    error: function (error) {
-      alert("Error fetching equipment id: " + error.responseText);
-      console.error(error);
-    },
-  });
-}
-
+//       $.ajax({
+//         url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
+//         method:"DELETE",
+//         contentType:"application/json",
+//         success:function (results) {
+//             console.log(results);
+//             alert("Field Deleted");
+//             loadFields();
+//         },
+//         error:function (error) {
+//             console.log("Status:", status);
+//             console.log("Error:", error);
+//             alert("Field Delete unsuccessful");
+//         }
+//       });
+//     },
+//     error: function (error) {
+//       alert("Error fetching equipment id: " + error.responseText);
+//       console.error(error);
+//     },
+//   });
+// }
 
 function clearFields() {
   $("#field_name").val("");

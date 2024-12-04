@@ -52,8 +52,9 @@ function loadFields() {
         $("#field_size").val(extent_size);
       });
       $("#fields-table").on("click", ".delete-button", function () {
-        var fieldName = $("#field_name").val();
-        console.log(fieldName);
+        const row = $(this).closest("tr");
+
+        const fieldName = row.find(".field-name-value").text();
 
         const url = `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`;
         $.ajax({

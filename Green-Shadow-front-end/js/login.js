@@ -1,15 +1,14 @@
-var x = document.getElementById("login");
-var y = document.getElementById("register");
-var z = document.getElementById("btn");
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const showRegister = document.getElementById("show-register");
+const showLogin = document.getElementById("show-login");
 
-function register(){
-    x.style.left = "-400px";
-    y.style.left = "50px";
-    z.style.left = "110px";
-}
+showRegister.addEventListener("click", () => {
+  loginForm.classList.add("hidden");
+  registerForm.classList.remove("hidden");
+});
 
-function login(){
-    x.style.left = "50px";
-    y.style.left = "450px";
-    z.style.left = "0";
-}
+showLogin.addEventListener("click", () => {
+  registerForm.classList.add("hidden");
+  loginForm.classList.remove("hidden");
+});

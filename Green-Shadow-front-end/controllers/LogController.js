@@ -1,6 +1,6 @@
 $(document).ready(function () {
   fetchCropNames();
-  loadLogs()
+  loadLogs();
 });
 
 function fetchCropNames() {
@@ -28,7 +28,7 @@ function fetchCropNames() {
   });
 }
 
-function loadLogs(){
+function loadLogs() {
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/log",
     method: "GET",
@@ -56,6 +56,16 @@ function loadLogs(){
                     </tr>`;
         $("#log-table").append(record);
       });
+
+      $("#log-table").on("click", ".update-button", function () {
+        const row = $(this).closest("tr");
+
+        const log_date = row.find(".log-date-value").text();
+        const log_details = row.find(".log-details-value").text();
+        
+        $("#log_date").val(log_date);
+        $("#log_desc").val(log_details);
+      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load logs:", error);
@@ -82,12 +92,69 @@ function saveLog() {
     data: formData,
     success: function (result) {
       console.log(result);
+      clearLogForm();
       alert("Log Save Successfull");
       loadLogs();
     },
     error: function (result) {
       console.log(result);
+      clearLogForm();
       alert("Log Save Unsuccessfull");
     },
   });
+}
+
+function updateLog() {
+  const formData = new FormData();
+
+  formData.append("logDate", $("#log_date").val());
+  formData.append("logDetails", $("#log_desc").val());
+  formData.append("observedImage", $("#log_image")[0].files[0]);
+  formData.append("fields", $("#log_field_details").val());
+  formData.append("crops", $("#log_crop_details").val());
+  formData.append("staff", $("#log_staff_details").val());
+
+  const logDesc = $("#log_desc").val();
+  const url = `http://localhost:5050/green-shadow/api/v1/log/getlogcode/${logDesc}`;
+
+  $.ajax({
+    url: url,
+    type: "GET",
+    success: function (logCode) {
+      console.log("Fetched log code:", logCode);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
+        method: "PATCH",
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (result) {
+          clearLogForm();
+          console.log(result);
+          alert("Log Update Successfull");
+          loadLogs();
+        },
+        error: function (result) {
+          clearLogForm();
+          console.log(result);
+          alert("Field Update Unsuccessfull");
+          loadLogs();
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching log code: " + error.responseText);
+      console.error(error);
+    },
+  });
+}
+
+function clearLogForm() {
+  $("#log_date").val("");
+  $("#log_desc").val("");
+  $("#log_image").val("");
+  $("#log_field_details").val("");
+  $("#log_crop_details").val("");
+  $("#log_staff_details").val("");
 }

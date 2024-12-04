@@ -23,7 +23,7 @@
 
 <body>
   <!-- login-section -->
-  <section id="login-section">
+  <section id="login-section" class="section">
     <div class="login-container">
       <div class="form-section">
         <div id="login-form">
@@ -74,7 +74,7 @@
   </section>
 
   <!-- navbar -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-c-green" id="navbar" style="display: none;">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-c-green section" id="navbar" style="display: none;">
     <div class="container-fluid">
       <a class="navbar-brand" style="color: #ffffff;" href="#"><i class="fa-solid fa-leaf" style="color: #ffffff;"></i>Green Shadow</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -114,7 +114,7 @@
   </nav>
 
   <!-- Dashboard -->
-  <section id="dashboard-section" class="animate__animated animate__fadeIn">
+  <section id="dashboard-section" class="animate__animated animate__fadeIn" class="section">
     <h1 class="text-start section-header"><i class="fab fa-delicious f-left"></i>Dashboard</h1>
     <div class="container">
       <div class="row">
@@ -165,7 +165,7 @@
   </section>
 
   <!-- Field -->
-  <section id="field-section">
+  <section id="field-section" class="section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
       <h1 class="text-start section-header animate__animated animate__backInLeft duration-4s">
         <i class="fab fa-delicious f-left"></i>Field
@@ -173,7 +173,7 @@
       <div class="row">
         <div class="col-md-4 col-sm-12">
           <!-- Form Section -->
-          <div class="form-card overflow-hidden animate__animated animate__fadeIn">
+          <div class="form-card overflow-hidden animate__animated animate__fadeIn duration-4s">
 
             <div class="card-body">
               <div class="form-group ">
@@ -203,7 +203,7 @@
               <div class="text-right mt-3">
                 <button type="button" class="btn btn-warning" onclick="saveField()">Save</button>
                 <button type="button" class="btn btn-primary" onclick="updateFields()">Update</button>
-                <button type="button" class="btn btn-info" onclick="clearFields()">Cancel</button>
+                <button type="button" class="btn btn-info" id="clearBtn" onclick="clearFields()">Cancel</button>
               </div>
             </div>
           </div>
@@ -236,7 +236,7 @@
   </section>
 
   <!-- Crop section -->
-  <section id="crop-section">
+  <section id="crop-section" class="section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
       <h1 class="text-start section-header animate__animated animate__backInLeft duration-4s">
         <i class="fa-solid fa-seedling"></i>Crop
@@ -308,7 +308,7 @@
   </section>
 
   <!-- Staff section -->
-  <section id="staff-section">
+  <section id="staff-section" class="section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
       <h1 class="text-start section-header animate__animated animate__backInLeft duration-4s">
         <i class="fa-solid fa-people-group"></i>Staff
@@ -382,7 +382,7 @@
               <div class="text-right mt-3">
                 <button type="button" class="btn btn-warning" onclick="saveStaff()">Save</button>
                 <button type="button" class="btn btn-primary" onclick="updateStaff()">Update</button>
-                <button type="button" class="btn btn-info">Cancel</button>
+                <button type="button" class="btn btn-info" onclick="clearStaffForm()">Cancel</button>
               </div>
             </div>
           </div>
@@ -419,7 +419,7 @@
   </section>
 
   <!-- Monitoring log section -->
-  <section id="monitoring-section">
+  <section id="monitoring-section" class="section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
       <h1 class="text-start section-header animate__animated animate__backInLeft duration-4s">
         <i class="fas fa-clipboard-list f-left"></i>Monitoring Logs
@@ -460,7 +460,7 @@
               <div class="text-right mt-3">
                 <button type="button" class="btn btn-warning" onclick="saveLog()">Save</button>
                 <button type="button" class="btn btn-warning" onclick="updateLog()">Update</button>
-                <button type="button" class="btn btn-info">Cancel</button>
+                <button type="button" class="btn btn-info" onclick="clearLogForm()">Cancel</button>
               </div>
             </div>
           </div>
@@ -491,7 +491,7 @@
   </section>
 
   <!-- Vehicle section -->
-  <section id="vehicle-section">
+  <section id="vehicle-section" class="section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
       <h1 class="text-start section-header animate__animated animate__backInLeft duration-4s">
         <i class="fas fa-truck f-left"></i>Vehicle
@@ -577,7 +577,7 @@
   </section>
 
   <!-- Equipment section -->
-  <section id="equipment-section">
+  <section id="equipment-section" class="section">
     <div class="container-fluid light-style flex-grow-1 container-p-y">
       <h1 class="text-start section-header animate__animated animate__backInLeft duration-4s">
           <i class="fas fa-trowel f-left"></i>Equipment
@@ -636,6 +636,7 @@
                                   <th scope="col">Name</th>
                                   <th scope="col">Type</th>
                                   <th scope="col">Status</th>
+                                  <th scope="col">Assigned Staff</th>
                                   <th scope="col">Assigned Staff</th>
                                   <th scope="col">Actions</th>
                               </tr>

@@ -90,14 +90,23 @@ $("#staff-table").on("click", ".delete-button", function () {
         method: "DELETE",
         contentType: "application/json",
         success: function (results) {
+          fetchStaffNames("vehicle_staff_details")
           console.log(results);
-          alert("Staff member Deleted");
+          Swal.fire({
+            title: "Staff Member Delete",
+            text: "Staff Member Successfully Deleted",
+            icon: "success"
+          });
           loadStaff();
         },
         error: function (error) {
           console.log("Status:", status);
           console.log("Error:", error);
-          alert("staff member unsuccessful");
+          Swal.fire({
+            title: "Staff Member Delete",
+            text: "Staff Member Delete Unsuccessfull",
+            icon: "error"
+          });
           loadStaff();
         },
       });
@@ -143,13 +152,22 @@ function saveStaff() {
     }),
     success: function (result) {
       clearStaffForm();
+      fetchStaffNames("vehicle_staff_details")
       console.log(result);
-      alert("Staff member successfully saved");
+      Swal.fire({
+        title: "Staff Member Save",
+        text: "Staff Member Successfully Saved",
+        icon: "success"
+      });
       loadStaff();
     },
     error: function (result) {
       clearStaffForm();
-      alert("Staff member save unsuccessfull");
+      Swal.fire({
+        title: "Staff Member Save",
+        text: "Staff Member Save Unsuccessfull",
+        icon: "error"
+      });
       console.log(result);
       loadStaff();
     },
@@ -199,12 +217,20 @@ function updateStaff() {
         data: JSON.stringify(updatedStaffData),
         success: function () {
           clearStaffForm();
-          alert("staff successfully updated");
+          Swal.fire({
+            title: "Staff Member Update",
+            text: "Staff Member Successfully Updated",
+            icon: "success"
+          });
           loadStaff();
         },
         error: function (error) {
           clearStaffForm();
-          alert("staff update unsuccessful");
+          Swal.fire({
+            title: "Staff Member Update",
+            text: "Staff Member Update Unsuccessfull",
+            icon: "error"
+          });
           console.error(error.responseText);
         },
       });

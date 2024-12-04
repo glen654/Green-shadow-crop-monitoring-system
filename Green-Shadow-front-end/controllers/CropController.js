@@ -75,13 +75,21 @@ $("#crop-table").on("click", ".delete-button", function () {
         contentType: "application/json",
         success: function (results) {
           console.log(results);
-          alert("Crop Deleted");
+          Swal.fire({
+            title: "Crop Delete",
+            text: "Crop Successfully Deleted",
+            icon: "success"
+          });
           loadCrops();
         },
         error: function (error) {
           console.log("Status:", status);
           console.log("Error:", error);
-          alert("Crop Delete unsuccessful");
+          Swal.fire({
+            title: "Crop Delete",
+            text: "Crop Delete Unsuccessfull",
+            icon: "error"
+          });
           loadCrops();
         },
       });
@@ -112,13 +120,21 @@ function saveCrop() {
     success: function (result) {
       clearFields();
       console.log(result);
-      alert("Crop Save Successfull");
+      Swal.fire({
+        title: "Crop Save",
+        text: "Crop Successfully Saved",
+        icon: "success"
+      });
       loadCrops();
     },
     error: function (result) {
       clearFields();
       console.log(result);
-      alert("Crop Save Unsuccessfull");
+      Swal.fire({
+        title: "Crop Save",
+        text: "Crop Save Unsuccessfull",
+        icon: "error"
+      });
       loadCrops();
     },
   });
@@ -146,13 +162,21 @@ function updateCrop() {
     success: function (result) {
       clearFields();
       console.log(result);
-      alert("Crop update Successfull");
+      Swal.fire({
+        title: "Crop Update",
+        text: "Crop Successfully Updated",
+        icon: "success"
+      });
       loadCrops();
     },
     error: function (result) {
       clearFields();
       console.log(result);
-      alert("Crop update Unsuccessfull");
+      Swal.fire({
+        title: "Crop Update",
+        text: "Crop Update Unsuccessfull",
+        icon: "error"
+      });
       loadCrops();
     },
   });

@@ -20,6 +20,7 @@ function loadEquipment() {
                         <td class="equip-type-value">${equipment.type}</td>
                         <td class="equip-status-value">${equipment.status}</td>
                         <td class="equip-staff-value">${equipment.assigned_staff.first_name}</td>
+                        <td class="equip-field-value">${equipment.assigned_field.field_name}</td>
                         <td>
                             <button class="btn btn-primary btn-sm update-button">
                                 <i class="fa fa-pencil"></i>
@@ -38,11 +39,13 @@ function loadEquipment() {
         const equip_type = row.find(".equip-type-value").text();
         const equip_status = row.find(".equip-status-value").text();
         const equip_assigned_staff = row.find(".equip-staff-value").text();
+        const equip_assigned_field = row.find(".equip-field-value").text();
 
         $("#equipment_name").val(equip_name);
         $("#equipment_type").val(equip_type);
         $("#equipment_status").val(equip_status);
         $("#equip_staff_details").val(equip_assigned_staff);
+        $("#equip_field_details").val(equip_assigned_field);
       });
     },
     error: function (xhr, status, error) {
@@ -69,13 +72,21 @@ $("#equipment-table").on("click", ".delete-button", function () {
         contentType: "application/json",
         success: function (results) {
           console.log(results);
-          alert("Equipment Deleted");
+          Swal.fire({
+            title: "Equipment Delete",
+            text: "Equipment Successfully Deleted",
+            icon: "success"
+          });
           loadEquipment();
         },
         error: function (error) {
           console.log("Status:", status);
           console.log("Error:", error);
-          alert("Equipment Delete unsuccessful");
+          Swal.fire({
+            title: "Equipment Delete",
+            text: "Equipment Delete Unsuccessfull",
+            icon: "error"
+          });
           loadEquipment();
         },
       });
@@ -112,12 +123,21 @@ function saveEquipment() {
     }),
     success: function (result) {
       clearEquipForm();
+      loadEquipment();
       console.log(result);
-      alert("Equipment successfully saved");
+      Swal.fire({
+        title: "Equipment Save",
+        text: "Equipment Successfully Saved",
+        icon: "success"
+      });
     },
     error: function (result) {
       clearEquipForm();
-      alert("Equipment save unsuccessfull");
+      Swal.fire({
+        title: "Equipment Save",
+        text: "Equipment Save Unsuccessfull",
+        icon: "error"
+      });
       console.log(result);
     },
   });
@@ -156,12 +176,20 @@ function updateEquipment() {
         data: JSON.stringify(updatedEquipData),
         success: function () {
           clearEquipForm();
-          alert("Equipment successfully updated");
+          Swal.fire({
+            title: "Equipment Update",
+            text: "Equipment Successfully Updated",
+            icon: "success"
+          });
           loadEquipment();
         },
         error: function (error) {
           clearEquipForm();
-          alert("Equipment update unsuccessful");
+          Swal.fire({
+            title: "Equipment Update",
+            text: "Equipment Update Unsuccessfull",
+            icon: "error"
+          });
           console.error(error.responseText);
         },
       });

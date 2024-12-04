@@ -76,13 +76,21 @@ $("#vehicle-table").on("click", ".delete-button", function () {
         contentType: "application/json",
         success: function (results) {
           console.log(results);
-          alert("Vehicle Deleted");
+          Swal.fire({
+            title: "Vehicle Delete",
+            text: "Vehicle Successfully Deleted",
+            icon: "success"
+          });
           loadVehicle();
         },
         error: function (error) {
           console.log("Status:", status);
           console.log("Error:", error);
-          alert("Vehicle Delete unsuccessful");
+          Swal.fire({
+            title: "Vehicle Delete",
+            text: "Vehicle Delete Unsuccessfull",
+            icon: "error"
+          });
           loadVehicle();
         },
       });
@@ -118,12 +126,21 @@ function saveVehicle() {
     }),
     success: function (result) {
       clearVehicleForm();
+      loadVehicle();
       console.log(result);
-      alert("Vehiclesuccessfully saved");
+      Swal.fire({
+        title: "Vehicle Save",
+        text: "Vehicle Successfully Saved",
+        icon: "success"
+      });
     },
     error: function (result) {
       clearVehicleForm();
-      alert("Vehicle save unsuccessfull");
+      Swal.fire({
+        title: "Vehicle Save",
+        text: "Vehicle Save Unsuccessfull",
+        icon: "error"
+      });
       console.log(result);
     },
   });
@@ -181,12 +198,21 @@ function updateVehicle() {
         data: JSON.stringify(updatedVehicleData),
         success: function () {
           clearVehicleForm();
-          alert("Vehicle successfully updated");
+          Swal.fire({
+            title: "Vehicle Update",
+            text: "Vehicle Successfully Updated",
+            icon: "success"
+          });
           loadVehicle();
         },
         error: function (error) {
           clearVehicleForm();
-          alert("Vehicle update unsuccessful");
+          loadVehicle();
+          Swal.fire({
+            title: "Vehicle Update",
+            text: "Vehicle Update Unsuccessfull",
+            icon: "error"
+          });
           console.error(error.responseText);
         },
       });

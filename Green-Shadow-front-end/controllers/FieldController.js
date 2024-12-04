@@ -77,14 +77,22 @@ $("#fields-table").on("click", ".delete-button", function () {
         contentType: "application/json",
         success: function (results) {
           console.log(results);
-          alert("Field Deleted");
+          Swal.fire({
+            title: "Field Delete",
+            text: "Field Successfully Deleted",
+            icon: "success"
+          });
           fetchFieldNames("field_details");
           loadFields();
         },
         error: function (error) {
           console.log("Status:", status);
           console.log("Error:", error);
-          alert("Field Delete unsuccessful");
+          Swal.fire({
+            title: "Field Delete",
+            text: "Field Delete Unsuccessfull",
+            icon: "error"
+          });
         },
       });
     },
@@ -120,14 +128,22 @@ function saveField() {
     success: function (result) {
       clearFields();
       console.log(result);
-      alert("Field Save Successfull");
+      Swal.fire({
+        title: "Field Save",
+        text: "Field Successfully Saved",
+        icon: "success"
+      });
       fetchFieldNames("field_details");
       loadFields();
     },
     error: function (result) {
       clearFields();
       console.log(result);
-      alert("Field Save Unsuccessfull");
+      Swal.fire({
+        title: "Field Save",
+        text: "Field Save Unsuccessfull",
+        icon: "error"
+      });
       loadFields();
     },
   });
@@ -160,24 +176,37 @@ function updateFields() {
     success: function (result) {
       clearFields();
       console.log(result);
-      alert("Field Update Successfull");
+      Swal.fire({
+        title: "Field Update",
+        text: "Field Successfully Updated",
+        icon: "success"
+      });
       loadFields();
     },
     error: function (result) {
       clearFields();
       console.log(result);
-      alert("Field Update Unsuccessfull");
+      Swal.fire({
+        title: "Field Update",
+        text: "Field Update Unsuccessfull",
+        icon: "error"
+      });
       loadFields();
     },
   });
 }
 
-function clearFields() {
+function clearFields(){
   console.log("clicked");
-  $("#field_name").val("");
-  $("#field_location_x").val("");
-  $("#field_location_y").val("");
-  $("#field_size").val("");
-  $("#field_image1").val(null);
-  $("#field_image2").val(null);
+  
+  $("#field_name").val('');
+  $("#field_location_x").val('');
+  $("#field_location_y").val('');
+  $("#field_size").val('');
 }
+
+// $("#clearBtn").on("click", function () {
+//   console.log("clicked");
+  
+//   clearFields();
+// });

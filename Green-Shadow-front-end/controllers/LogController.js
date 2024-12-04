@@ -91,13 +91,21 @@ $("#log-table").on("click", ".delete-button", function () {
         contentType: "application/json",
         success: function (results) {
           console.log(results);
-          alert("Log Deleted");
+          Swal.fire({
+            title: "Log Delete",
+            text: "Log Successfully Deleted",
+            icon: "success"
+          });
           loadLogs();
         },
         error: function (error) {
           console.log("Status:", status);
           console.log("Error:", error);
-          alert("Log Delete unsuccessful");
+          Swal.fire({
+            title: "Log Delete",
+            text: "Log Delete Unsuccessfull",
+            icon: "error"
+          });
           loadLogs();
         },
       });
@@ -128,13 +136,21 @@ function saveLog() {
     success: function (result) {
       console.log(result);
       clearLogForm();
-      alert("Log Save Successfull");
+      Swal.fire({
+        title: "Log Save",
+        text: "Log Successfully Saved",
+        icon: "success"
+      });
       loadLogs();
     },
     error: function (result) {
       console.log(result);
       clearLogForm();
-      alert("Log Save Unsuccessfull");
+      Swal.fire({
+        title: "Log Save",
+        text: "Log Save Unsuccessfull",
+        icon: "error"
+      });
     },
   });
 }
@@ -167,13 +183,21 @@ function updateLog() {
         success: function (result) {
           clearLogForm();
           console.log(result);
-          alert("Log Update Successfull");
+          Swal.fire({
+            title: "Log Update",
+            text: "Equipment Successfully Updated",
+            icon: "success"
+          });
           loadLogs();
         },
         error: function (result) {
           clearLogForm();
           console.log(result);
-          alert("Field Update Unsuccessfull");
+          Swal.fire({
+            title: "Log Update",
+            text: "Log Update Unsuccessfull",
+            icon: "error"
+          });
           loadLogs();
         },
       });

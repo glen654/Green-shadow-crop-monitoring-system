@@ -65,43 +65,6 @@ function loadStaff() {
         $("#email").val(staffEmail);
         $("#role").val(staffRole);
       });
-
-      $("#staff-table").on("click", ".delete-button", function () {
-        const row = $(this).closest("tr");
-
-        const fullName = row.find(".staff-name-value").text();
-        const firstName = fullName.split(" ")[0];
-
-        $.ajax({
-          url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
-          method: "GET",
-          success: function (id) {
-            console.log("Fetched staff id:", id);
-
-            $.ajax({
-              url: `http://localhost:5050/green-shadow/api/v1/staff/${id}`,
-              method: "DELETE",
-              contentType: "application/json",
-              success: function (results) {
-                console.log(results);
-                alert("Staff member Deleted");
-                loadStaff();
-              },
-              error: function (error) {
-                console.log("Status:", status);
-                console.log("Error:", error);
-                alert("staff member unsuccessful");
-                loadStaff();
-              },
-            });
-          },
-          error: function (error) {
-            alert("Error fetching staff id: " + error.responseText);
-            console.error(error);
-          },
-        });
-        
-      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load staff:", error);
@@ -109,6 +72,42 @@ function loadStaff() {
     },
   });
 }
+
+$("#staff-table").on("click", ".delete-button", function () {
+  const row = $(this).closest("tr");
+
+  const fullName = row.find(".staff-name-value").text();
+  const firstName = fullName.split(" ")[0];
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
+    method: "GET",
+    success: function (id) {
+      console.log("Fetched staff id:", id);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/staff/${id}`,
+        method: "DELETE",
+        contentType: "application/json",
+        success: function (results) {
+          console.log(results);
+          alert("Staff member Deleted");
+          loadStaff();
+        },
+        error: function (error) {
+          console.log("Status:", status);
+          console.log("Error:", error);
+          alert("staff member unsuccessful");
+          loadStaff();
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching staff id: " + error.responseText);
+      console.error(error);
+    },
+  });
+});
 
 function saveStaff() {
   var first_name = $("#first_name").val();

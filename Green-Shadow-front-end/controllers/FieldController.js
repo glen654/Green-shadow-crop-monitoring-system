@@ -51,40 +51,6 @@ function loadFields() {
         $("#field_location_y").val(y);
         $("#field_size").val(extent_size);
       });
-      $("#fields-table").on("click", ".delete-button", function () {
-        const row = $(this).closest("tr");
-
-        const fieldName = row.find(".field-name-value").text();
-
-        const url = `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`;
-        $.ajax({
-          url: url,
-          method: "GET",
-          success: function (fieldCode) {
-            console.log("Fetched field Code:", fieldCode);
-
-            $.ajax({
-              url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
-              method: "DELETE",
-              contentType: "application/json",
-              success: function (results) {
-                console.log(results);
-                alert("Field Deleted");
-                loadFields();
-              },
-              error: function (error) {
-                console.log("Status:", status);
-                console.log("Error:", error);
-                alert("Field Delete unsuccessful");
-              },
-            });
-          },
-          error: function (error) {
-            alert("Error fetching equipment id: " + error.responseText);
-            console.error(error);
-          },
-        });
-      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load fields:", error);
@@ -92,6 +58,42 @@ function loadFields() {
     },
   });
 }
+
+$("#fields-table").on("click", ".delete-button", function () {
+  const row = $(this).closest("tr");
+
+  const fieldName = row.find(".field-name-value").text();
+
+  const url = `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`;
+  $.ajax({
+    url: url,
+    method: "GET",
+    success: function (fieldCode) {
+      console.log("Fetched field Code:", fieldCode);
+
+      $.ajax({
+        url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
+        method: "DELETE",
+        contentType: "application/json",
+        success: function (results) {
+          console.log(results);
+          alert("Field Deleted");
+          fetchFieldNames("field_details");
+          loadFields();
+        },
+        error: function (error) {
+          console.log("Status:", status);
+          console.log("Error:", error);
+          alert("Field Delete unsuccessful");
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching equipment id: " + error.responseText);
+      console.error(error);
+    },
+  });
+});
 
 function saveField() {
   const formData = new FormData();
@@ -119,6 +121,7 @@ function saveField() {
       clearFields();
       console.log(result);
       alert("Field Save Successfull");
+      fetchFieldNames("field_details");
       loadFields();
     },
     error: function (result) {
@@ -169,45 +172,12 @@ function updateFields() {
   });
 }
 
-// function deleteField() {
-//   var fieldName = $("#field_name").val();
-//   console.log(fieldName);
-
-//   const url = `http://localhost:5050/green-shadow/api/v1/field/getfieldcode/${fieldName}`;
-//   $.ajax({
-//     url: url,
-//     method: "GET",
-//     success: function (fieldCode) {
-//       console.log("Fetched field Code:", fieldCode);
-
-//       $.ajax({
-//         url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
-//         method:"DELETE",
-//         contentType:"application/json",
-//         success:function (results) {
-//             console.log(results);
-//             alert("Field Deleted");
-//             loadFields();
-//         },
-//         error:function (error) {
-//             console.log("Status:", status);
-//             console.log("Error:", error);
-//             alert("Field Delete unsuccessful");
-//         }
-//       });
-//     },
-//     error: function (error) {
-//       alert("Error fetching equipment id: " + error.responseText);
-//       console.error(error);
-//     },
-//   });
-// }
-
 function clearFields() {
+  console.log("clicked");
   $("#field_name").val("");
   $("#field_location_x").val("");
   $("#field_location_y").val("");
   $("#field_size").val("");
-  $("#field_image1").val("");
-  $("#field_image2").val("");
+  $("#field_image1").val(null);
+  $("#field_image2").val(null);
 }

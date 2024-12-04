@@ -44,41 +44,6 @@ function loadEquipment() {
         $("#equipment_status").val(equip_status);
         $("#equip_staff_details").val(equip_assigned_staff);
       });
-
-      $("#equipment-table").on("click", ".delete-button", function () {
-        const row = $(this).closest("tr");
-
-        const equipmentName = row.find(".equip-name-value").text();
-
-        $.ajax({
-          url: `http://localhost:5050/green-shadow/api/v1/equipment/getequipId/${equipmentName}`,
-          method: "GET",
-          success: function (equipmentId) {
-            console.log("Fetched equipment Code:", equipmentId);
-
-            $.ajax({
-              url: `http://localhost:5050/green-shadow/api/v1/equipment/${equipmentId}`,
-              method: "DELETE",
-              contentType: "application/json",
-              success: function (results) {
-                console.log(results);
-                alert("Equipment Deleted");
-                loadEquipment();
-              },
-              error: function (error) {
-                console.log("Status:", status);
-                console.log("Error:", error);
-                alert("Equipment Delete unsuccessful");
-                loadEquipment();
-              },
-            });
-          },
-          error: function (error) {
-            alert("Error fetching equipment id: " + error.responseText);
-            console.error(error);
-          },
-        });
-      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load equipment:", error);
@@ -86,6 +51,41 @@ function loadEquipment() {
     },
   });
 }
+
+$("#equipment-table").on("click", ".delete-button", function () {
+  const row = $(this).closest("tr");
+
+  const equipmentName = row.find(".equip-name-value").text();
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/equipment/getequipId/${equipmentName}`,
+    method: "GET",
+    success: function (equipmentId) {
+      console.log("Fetched equipment Code:", equipmentId);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/equipment/${equipmentId}`,
+        method: "DELETE",
+        contentType: "application/json",
+        success: function (results) {
+          console.log(results);
+          alert("Equipment Deleted");
+          loadEquipment();
+        },
+        error: function (error) {
+          console.log("Status:", status);
+          console.log("Error:", error);
+          alert("Equipment Delete unsuccessful");
+          loadEquipment();
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching equipment id: " + error.responseText);
+      console.error(error);
+    },
+  });
+});
 
 function saveEquipment() {
   var equipment_name = $("#equipment_name").val();

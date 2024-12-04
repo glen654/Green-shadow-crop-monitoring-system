@@ -62,44 +62,9 @@ function loadLogs() {
 
         const log_date = row.find(".log-date-value").text();
         const log_details = row.find(".log-details-value").text();
-        
+
         $("#log_date").val(log_date);
         $("#log_desc").val(log_details);
-      });
-
-      $("#log-table").on("click", ".delete-button", function () {
-        const row = $(this).closest("tr");
-
-        const logDesc = row.find(".log-details-value").text();
-
-        $.ajax({
-          url: `http://localhost:5050/green-shadow/api/v1/log/getlogcode/${logDesc}`,
-          method: "GET",
-          success: function (logCode) {
-            console.log("Fetched log Code:", logCode);
-
-            $.ajax({
-              url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
-              method: "DELETE",
-              contentType: "application/json",
-              success: function (results) {
-                console.log(results);
-                alert("Log Deleted");
-                loadLogs();
-              },
-              error: function (error) {
-                console.log("Status:", status);
-                console.log("Error:", error);
-                alert("Log Delete unsuccessful");
-                loadLogs();
-              },
-            });
-          },
-          error: function (error) {
-            alert("Error fetching log code: " + error.responseText);
-            console.error(error);
-          },
-        });
       });
     },
     error: function (xhr, status, error) {
@@ -108,6 +73,41 @@ function loadLogs() {
     },
   });
 }
+
+$("#log-table").on("click", ".delete-button", function () {
+  const row = $(this).closest("tr");
+
+  const logDesc = row.find(".log-details-value").text();
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/log/getlogcode/${logDesc}`,
+    method: "GET",
+    success: function (logCode) {
+      console.log("Fetched log Code:", logCode);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
+        method: "DELETE",
+        contentType: "application/json",
+        success: function (results) {
+          console.log(results);
+          alert("Log Deleted");
+          loadLogs();
+        },
+        error: function (error) {
+          console.log("Status:", status);
+          console.log("Error:", error);
+          alert("Log Delete unsuccessful");
+          loadLogs();
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching log code: " + error.responseText);
+      console.error(error);
+    },
+  });
+});
 
 function saveLog() {
   const formData = new FormData();

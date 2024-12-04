@@ -50,49 +50,48 @@ function loadCrops() {
         $("#crop_season").val(season);
         $("#crop_field").val(field_name !== "Unassigned" ? field_name : "");
       });
-
-      $("#crop-table").on("click", ".delete-button", function () {
-        const row = $(this).closest("tr");
-
-        const commonName = row.find(".crop-name-value").text();
-
-        $.ajax({
-          url: `http://localhost:5050/green-shadow/api/v1/crop/getcropcode/${commonName}`,
-          method: "GET",
-          success: function (cropCode) {
-            console.log("Fetched crop Code:", cropCode);
-
-            $.ajax({
-              url: `http://localhost:5050/green-shadow/api/v1/crop/${cropCode}`,
-              method: "DELETE",
-              contentType: "application/json",
-              success: function (results) {
-                console.log(results);
-                alert("Crop Deleted");
-                loadCrops();
-              },
-              error: function (error) {
-                console.log("Status:", status);
-                console.log("Error:", error);
-                alert("Crop Delete unsuccessful");
-                loadCrops();
-              },
-            });
-          },
-          error: function (error) {
-            alert("Error fetching crop id: " + error.responseText);
-            console.error(error);
-          },
-        });
-      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load vehicle:", error);
       alert("An error occurred while loading the crop data.");
     },
   });
-        
 }
+
+$("#crop-table").on("click", ".delete-button", function () {
+  const row = $(this).closest("tr");
+
+  const commonName = row.find(".crop-name-value").text();
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/crop/getcropcode/${commonName}`,
+    method: "GET",
+    success: function (cropCode) {
+      console.log("Fetched crop Code:", cropCode);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/crop/${cropCode}`,
+        method: "DELETE",
+        contentType: "application/json",
+        success: function (results) {
+          console.log(results);
+          alert("Crop Deleted");
+          loadCrops();
+        },
+        error: function (error) {
+          console.log("Status:", status);
+          console.log("Error:", error);
+          alert("Crop Delete unsuccessful");
+          loadCrops();
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching crop id: " + error.responseText);
+      console.error(error);
+    },
+  });
+});
 
 function saveCrop() {
   const formData = new FormData();

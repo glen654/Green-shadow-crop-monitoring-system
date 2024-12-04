@@ -51,41 +51,6 @@ function loadVehicle() {
         $("#vehicle_staff_details").val(staff);
         $("#remarks").val(remarks);
       });
-
-      $("#vehicle-table").on("click", ".delete-button", function () {
-        const row = $(this).closest("tr");
-
-        const licenseNumber = row.find(".vehicle-license-value").text();
-
-        $.ajax({
-          url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
-          method: "GET",
-          success: function (vehicleCode) {
-            console.log("Fetched vehicle Code:", vehicleCode);
-
-            $.ajax({
-              url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
-              method: "DELETE",
-              contentType: "application/json",
-              success: function (results) {
-                console.log(results);
-                alert("Vehicle Deleted");
-                loadVehicle();
-              },
-              error: function (error) {
-                console.log("Status:", status);
-                console.log("Error:", error);
-                alert("Vehicle Delete unsuccessful");
-                loadVehicle();
-              },
-            });
-          },
-          error: function (error) {
-            alert("Error fetching equipment id: " + error.responseText);
-            console.error(error);
-          },
-        });
-      });
     },
     error: function (xhr, status, error) {
       console.error("Failed to load vehicle:", error);
@@ -93,6 +58,41 @@ function loadVehicle() {
     },
   });
 }
+
+$("#vehicle-table").on("click", ".delete-button", function () {
+  const row = $(this).closest("tr");
+
+  const licenseNumber = row.find(".vehicle-license-value").text();
+
+  $.ajax({
+    url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
+    method: "GET",
+    success: function (vehicleCode) {
+      console.log("Fetched vehicle Code:", vehicleCode);
+
+      $.ajax({
+        url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
+        method: "DELETE",
+        contentType: "application/json",
+        success: function (results) {
+          console.log(results);
+          alert("Vehicle Deleted");
+          loadVehicle();
+        },
+        error: function (error) {
+          console.log("Status:", status);
+          console.log("Error:", error);
+          alert("Vehicle Delete unsuccessful");
+          loadVehicle();
+        },
+      });
+    },
+    error: function (error) {
+      alert("Error fetching equipment id: " + error.responseText);
+      console.error(error);
+    },
+  });
+});
 
 function saveVehicle() {
   var license_plate_number = $("#license_plate").val();

@@ -5,10 +5,14 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadEquipment() {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/equipment",
     type: "GET",
     contentType: "application/json",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (equipment) {
       console.log("Equipment loaded:", equipment);
       $("#equipment-table").empty();
@@ -56,6 +60,7 @@ function loadEquipment() {
 }
 
 $("#equipment-table").on("click", ".delete-button", function () {
+  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const equipmentName = row.find(".equip-name-value").text();
@@ -63,12 +68,18 @@ $("#equipment-table").on("click", ".delete-button", function () {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/equipment/getequipId/${equipmentName}`,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (equipmentId) {
       console.log("Fetched equipment Code:", equipmentId);
 
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/equipment/${equipmentId}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         success: function (results) {
           console.log(results);
@@ -99,6 +110,8 @@ $("#equipment-table").on("click", ".delete-button", function () {
 });
 
 function saveEquipment() {
+  const token = localStorage.getItem("token");
+
   var equipment_name = $("#equipment_name").val();
   var equipment_type = $("#equipment_type").val();
   var equipment_status = $("#equipment_status").val();
@@ -108,6 +121,9 @@ function saveEquipment() {
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/equipment",
     type: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     data: JSON.stringify({
       name: equipment_name,
@@ -144,6 +160,7 @@ function saveEquipment() {
 }
 
 function updateEquipment() {
+  const token = localStorage.getItem("token");
   var equipmentName = $("#equipment_name").val();
   var equipment_type = $("#equipment_type").val();
   var equipment_status = $("#equipment_status").val();
@@ -153,6 +170,9 @@ function updateEquipment() {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/equipment/getequipId/${equipmentName}`,
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (equipmentId) {
       console.log("Fetched equip id:", equipmentId);
 
@@ -172,6 +192,9 @@ function updateEquipment() {
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/equipment/${equipmentId}`,
         type: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         data: JSON.stringify(updatedEquipData),
         success: function () {

@@ -5,9 +5,13 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadStaff() {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/staff",
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     success: function (staff) {
       console.log("Staff loaded:", staff);
@@ -74,6 +78,7 @@ function loadStaff() {
 }
 
 $("#staff-table").on("click", ".delete-button", function () {
+  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const fullName = row.find(".staff-name-value").text();
@@ -82,12 +87,18 @@ $("#staff-table").on("click", ".delete-button", function () {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (id) {
       console.log("Fetched staff id:", id);
 
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/staff/${id}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         success: function (results) {
           fetchStaffNames("vehicle_staff_details")
@@ -119,6 +130,8 @@ $("#staff-table").on("click", ".delete-button", function () {
 });
 
 function saveStaff() {
+  const token = localStorage.getItem("token");
+
   var first_name = $("#first_name").val();
   var last_name = $("#last_name").val();
   var designation = $("#designation").val();
@@ -136,6 +149,9 @@ function saveStaff() {
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/staff",
     type: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     data: JSON.stringify({
       first_name: first_name,
@@ -175,6 +191,8 @@ function saveStaff() {
 }
 
 function updateStaff() {
+  const token = localStorage.getItem("token");
+
   var firstName = $("#first_name").val();
   var last_name = $("#last_name").val();
   var designation = $("#designation").val();
@@ -192,6 +210,9 @@ function updateStaff() {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (staffId) {
       console.log("Fetched staff id:", staffId);
 
@@ -213,6 +234,9 @@ function updateStaff() {
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/staff/${staffId}`,
         type: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         data: JSON.stringify(updatedStaffData),
         success: function () {

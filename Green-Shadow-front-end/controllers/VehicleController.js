@@ -5,9 +5,13 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadVehicle() {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/vehicle",
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     success: function (vehicle) {
       console.log("Vehicle loaded:", vehicle);
@@ -60,6 +64,7 @@ function loadVehicle() {
 }
 
 $("#vehicle-table").on("click", ".delete-button", function () {
+  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const licenseNumber = row.find(".vehicle-license-value").text();
@@ -67,12 +72,18 @@ $("#vehicle-table").on("click", ".delete-button", function () {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (vehicleCode) {
       console.log("Fetched vehicle Code:", vehicleCode);
 
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         success: function (results) {
           console.log(results);
@@ -103,6 +114,8 @@ $("#vehicle-table").on("click", ".delete-button", function () {
 });
 
 function saveVehicle() {
+  const token = localStorage.getItem("token");
+
   var license_plate_number = $("#license_plate").val();
   var vehicle_category = $("#category").val();
   var fuel_type = $("#fuel_type").val();
@@ -113,6 +126,9 @@ function saveVehicle() {
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/vehicle",
     type: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     data: JSON.stringify({
       licensePlateNumber: license_plate_number,
@@ -166,6 +182,8 @@ $("#vehicle-table").on("click", "tr", function () {
 });
 
 function updateVehicle() {
+  const token = localStorage.getItem("token");
+
   var licenseNumber = $("#license_plate").val();
   var vehicle_category = $("#category").val();
   var fuel_type = $("#fuel_type").val();
@@ -176,6 +194,9 @@ function updateVehicle() {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (vehicleCode) {
       console.log("Fetched vehicle code:", vehicleCode);
 
@@ -194,6 +215,9 @@ function updateVehicle() {
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
         type: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         data: JSON.stringify(updatedVehicleData),
         success: function () {

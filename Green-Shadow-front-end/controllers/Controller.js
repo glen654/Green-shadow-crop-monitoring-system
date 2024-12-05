@@ -9,9 +9,13 @@ $(document).ready(function () {
 });
 
 function fetchFieldNames(targetElementId) {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/field/getallfieldnames",
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     success: function (response) {
       console.log("Field name: ", response);
@@ -34,9 +38,13 @@ function fetchFieldNames(targetElementId) {
 }
 
 function fetchStaffNames(targetElementId) {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/staff/getallstaffnames",
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     success: function (response) {
       console.log("Staff name: ", response);

@@ -82,6 +82,9 @@ $("#fields-table").on("click", ".delete-button", function () {
       $.ajax({
         url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         success: function (results) {
           console.log(results);

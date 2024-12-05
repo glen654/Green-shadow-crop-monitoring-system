@@ -5,10 +5,15 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadCrops() {
+  const token = localStorage.getItem("token");
+
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/crop",
     type: "GET",
     contentType: "application/json",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (crops) {
       console.log("Crops loaded:", crops);
       $("#crop-table").empty();
@@ -59,6 +64,7 @@ function loadCrops() {
 }
 
 $("#crop-table").on("click", ".delete-button", function () {
+  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const commonName = row.find(".crop-name-value").text();
@@ -66,12 +72,18 @@ $("#crop-table").on("click", ".delete-button", function () {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/crop/getcropcode/${commonName}`,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (cropCode) {
       console.log("Fetched crop Code:", cropCode);
 
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/crop/${cropCode}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         success: function (results) {
           console.log(results);
@@ -102,6 +114,7 @@ $("#crop-table").on("click", ".delete-button", function () {
 });
 
 function saveCrop() {
+  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("common_name", $("#crop_common_name").val());
@@ -114,6 +127,9 @@ function saveCrop() {
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/crop",
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: false,
     processData: false,
     data: formData,
@@ -141,6 +157,7 @@ function saveCrop() {
 }
 
 function updateCrop() {
+  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("common_name", $("#crop_common_name").val());
@@ -156,6 +173,9 @@ function updateCrop() {
   $.ajax({
     url: url,
     method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: false,
     processData: false,
     data: formData,

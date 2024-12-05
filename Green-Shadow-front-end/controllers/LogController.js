@@ -4,9 +4,13 @@ $(document).ready(function () {
 });
 
 function fetchCropNames() {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/crop/getallcropnames",
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     success: function (response) {
       console.log("Crop name: ", response);
@@ -29,9 +33,13 @@ function fetchCropNames() {
 }
 
 function loadLogs() {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/log",
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: "application/json",
     success: function (log) {
       console.log("Logs loaded:", log);
@@ -75,6 +83,7 @@ function loadLogs() {
 }
 
 $("#log-table").on("click", ".delete-button", function () {
+  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const logDesc = row.find(".log-details-value").text();
@@ -82,12 +91,18 @@ $("#log-table").on("click", ".delete-button", function () {
   $.ajax({
     url: `http://localhost:5050/green-shadow/api/v1/log/getlogcode/${logDesc}`,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (logCode) {
       console.log("Fetched log Code:", logCode);
 
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: "application/json",
         success: function (results) {
           console.log(results);
@@ -118,6 +133,8 @@ $("#log-table").on("click", ".delete-button", function () {
 });
 
 function saveLog() {
+  const token = localStorage.getItem("token");
+
   const formData = new FormData();
 
   formData.append("logDate", $("#log_date").val());
@@ -130,6 +147,9 @@ function saveLog() {
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/log",
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: false,
     processData: false,
     data: formData,
@@ -156,6 +176,7 @@ function saveLog() {
 }
 
 function updateLog() {
+  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("logDate", $("#log_date").val());
@@ -171,12 +192,18 @@ function updateLog() {
   $.ajax({
     url: url,
     type: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (logCode) {
       console.log("Fetched log code:", logCode);
 
       $.ajax({
         url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
         method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         contentType: false,
         processData: false,
         data: formData,

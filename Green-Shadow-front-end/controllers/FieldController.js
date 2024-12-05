@@ -5,10 +5,14 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadFields() {
+  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/field",
     type: "GET",
     contentType: "application/json",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (fields) {
       console.log("Fields loaded:", fields);
       $("#fields-table").empty();
@@ -54,12 +58,13 @@ function loadFields() {
     },
     error: function (xhr, status, error) {
       console.error("Failed to load fields:", error);
-      alert("An error occurred while loading the field data.");
+      // alert("An error occurred while loading the field data.");
     },
   });
 }
 
 $("#fields-table").on("click", ".delete-button", function () {
+  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const fieldName = row.find(".field-name-value").text();
@@ -68,6 +73,9 @@ $("#fields-table").on("click", ".delete-button", function () {
   $.ajax({
     url: url,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     success: function (fieldCode) {
       console.log("Fetched field Code:", fieldCode);
 
@@ -97,13 +105,14 @@ $("#fields-table").on("click", ".delete-button", function () {
       });
     },
     error: function (error) {
-      alert("Error fetching equipment id: " + error.responseText);
+      // alert("Error fetching equipment id: " + error.responseText);
       console.error(error);
     },
   });
 });
 
 function saveField() {
+  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("field_name", $("#field_name").val());
@@ -122,6 +131,9 @@ function saveField() {
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/field",
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: false,
     processData: false,
     data: formData,
@@ -150,6 +162,7 @@ function saveField() {
 }
 
 function updateFields() {
+  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("field_name", $("#field_name").val());
@@ -170,6 +183,9 @@ function updateFields() {
   $.ajax({
     url: url,
     method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     contentType: false,
     processData: false,
     data: formData,

@@ -28,7 +28,7 @@ function fetchFieldNames(targetElementId) {
       });
     },
     error: function (xhr, status, error) {
-      console.error("Error fetching field names:", status, error);
+      // console.error("Error fetching field names:", status, error);
     },
   });
 }
@@ -53,7 +53,7 @@ function fetchStaffNames(targetElementId) {
       });
     },
     error: function (xhr, status, error) {
-      console.error("Error fetching staff member names:", status, error);
+      // console.error("Error fetching staff member names:", status, error);
     },
   });
 }

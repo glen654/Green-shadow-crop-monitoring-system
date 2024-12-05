@@ -53,7 +53,7 @@ function loadCrops() {
     },
     error: function (xhr, status, error) {
       console.error("Failed to load vehicle:", error);
-      alert("An error occurred while loading the crop data.");
+      // alert("An error occurred while loading the crop data.");
     },
   });
 }
@@ -95,7 +95,7 @@ $("#crop-table").on("click", ".delete-button", function () {
       });
     },
     error: function (error) {
-      alert("Error fetching crop id: " + error.responseText);
+      // alert("Error fetching crop id: " + error.responseText);
       console.error(error);
     },
   });

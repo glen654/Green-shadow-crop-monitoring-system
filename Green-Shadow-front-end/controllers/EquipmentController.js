@@ -50,7 +50,7 @@ function loadEquipment() {
     },
     error: function (xhr, status, error) {
       console.error("Failed to load equipment:", error);
-      alert("An error occurred while loading the equipment data.");
+      // alert("An error occurred while loading the equipment data.");
     },
   });
 }
@@ -92,7 +92,7 @@ $("#equipment-table").on("click", ".delete-button", function () {
       });
     },
     error: function (error) {
-      alert("Error fetching equipment id: " + error.responseText);
+      // alert("Error fetching equipment id: " + error.responseText);
       console.error(error);
     },
   });
@@ -195,7 +195,7 @@ function updateEquipment() {
       });
     },
     error: function (error) {
-      alert("Error fetching equipment id: " + error.responseText);
+      // alert("Error fetching equipment id: " + error.responseText);
       console.error(error);
     },
   });

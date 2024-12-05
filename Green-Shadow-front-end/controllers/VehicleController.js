@@ -54,7 +54,7 @@ function loadVehicle() {
     },
     error: function (xhr, status, error) {
       console.error("Failed to load vehicle:", error);
-      alert("An error occurred while loading the vehicle data.");
+      // alert("An error occurred while loading the vehicle data.");
     },
   });
 }
@@ -96,7 +96,7 @@ $("#vehicle-table").on("click", ".delete-button", function () {
       });
     },
     error: function (error) {
-      alert("Error fetching equipment id: " + error.responseText);
+      // alert("Error fetching equipment id: " + error.responseText);
       console.error(error);
     },
   });
@@ -218,7 +218,7 @@ function updateVehicle() {
       });
     },
     error: function (error) {
-      alert("Error fetching vehicle code: " + error.responseText);
+      // alert("Error fetching vehicle code: " + error.responseText);
       console.error(error);
     },
   });

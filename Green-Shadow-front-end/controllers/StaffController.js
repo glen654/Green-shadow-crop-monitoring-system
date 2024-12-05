@@ -68,7 +68,7 @@ function loadStaff() {
     },
     error: function (xhr, status, error) {
       console.error("Failed to load staff:", error);
-      alert("An error occurred while loading the staff data.");
+      // alert("An error occurred while loading the staff data.");
     },
   });
 }
@@ -112,7 +112,7 @@ $("#staff-table").on("click", ".delete-button", function () {
       });
     },
     error: function (error) {
-      alert("Error fetching staff id: " + error.responseText);
+      // alert("Error fetching staff id: " + error.responseText);
       console.error(error);
     },
   });
@@ -236,7 +236,7 @@ function updateStaff() {
       });
     },
     error: function (error) {
-      alert("Error fetching staff id: " + error.responseText);
+      // alert("Error fetching staff id: " + error.responseText);
       console.error(error);
     },
   });

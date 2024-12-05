@@ -2,7 +2,35 @@ $(window).on("hashchange", function () {
     if (window.location.hash === "#dashboard-section") {
       $("#dashboard-section").css("display", "block");
       $("#login-section").css("display", "none");
-      // Hide other sections
+      $("#navbar").css({ display: "block", position: "fixed", top: "0", left: "0", width: "100%", zIndex: "1000", })
+
+      $("#dashboard-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
+    
+      $("#field-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
+    
+      $("#crop-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
+    
+      $("#staff-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
+    
+      $("#monitoring-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
+    
+      $("#vehicle-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
+    
+      $("#equipment-section").css({
+        marginTop: $("#navbar").outerHeight() + "px",
+      });
     }
   });
 
@@ -60,3 +88,14 @@ function userLogin() {
     },
   });
 }
+
+
+$("#btn-register").on("click", function (event) {
+  event.preventDefault(); // Prevent the default form submission
+  signUp(); // Call the signup function
+});
+
+$("#btn-login").on("click", function (event) {
+  event.preventDefault(); // Prevent the default form submission
+  userLogin(); // Call the signup function
+});

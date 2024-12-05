@@ -69,7 +69,7 @@ function loadLogs() {
     },
     error: function (xhr, status, error) {
       console.error("Failed to load logs:", error);
-      alert("An error occurred while loading the log data.");
+      // alert("An error occurred while loading the log data.");
     },
   });
 }
@@ -111,7 +111,7 @@ $("#log-table").on("click", ".delete-button", function () {
       });
     },
     error: function (error) {
-      alert("Error fetching log code: " + error.responseText);
+      // alert("Error fetching log code: " + error.responseText);
       console.error(error);
     },
   });
@@ -203,7 +203,7 @@ function updateLog() {
       });
     },
     error: function (error) {
-      alert("Error fetching log code: " + error.responseText);
+      // alert("Error fetching log code: " + error.responseText);
       console.error(error);
     },
   });

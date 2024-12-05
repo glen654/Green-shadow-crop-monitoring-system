@@ -5,12 +5,11 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadStaff() {
-  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/staff",
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     success: function (staff) {
@@ -78,7 +77,6 @@ function loadStaff() {
 }
 
 $("#staff-table").on("click", ".delete-button", function () {
-  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const fullName = row.find(".staff-name-value").text();
@@ -88,7 +86,7 @@ $("#staff-table").on("click", ".delete-button", function () {
     url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (id) {
       console.log("Fetched staff id:", id);
@@ -97,16 +95,16 @@ $("#staff-table").on("click", ".delete-button", function () {
         url: `http://localhost:5050/green-shadow/api/v1/staff/${id}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         success: function (results) {
-          fetchStaffNames("vehicle_staff_details")
+          fetchStaffNames("vehicle_staff_details");
           console.log(results);
           Swal.fire({
             title: "Staff Member Delete",
             text: "Staff Member Successfully Deleted",
-            icon: "success"
+            icon: "success",
           });
           loadStaff();
         },
@@ -116,7 +114,7 @@ $("#staff-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Staff Member Delete",
             text: "Staff Member Delete Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           loadStaff();
         },
@@ -130,8 +128,6 @@ $("#staff-table").on("click", ".delete-button", function () {
 });
 
 function saveStaff() {
-  const token = localStorage.getItem("token");
-
   var first_name = $("#first_name").val();
   var last_name = $("#last_name").val();
   var designation = $("#designation").val();
@@ -150,7 +146,7 @@ function saveStaff() {
     url: " http://localhost:5050/green-shadow/api/v1/staff",
     type: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     data: JSON.stringify({
@@ -168,12 +164,12 @@ function saveStaff() {
     }),
     success: function (result) {
       clearStaffForm();
-      fetchStaffNames("vehicle_staff_details")
+      fetchStaffNames("vehicle_staff_details");
       console.log(result);
       Swal.fire({
         title: "Staff Member Save",
         text: "Staff Member Successfully Saved",
-        icon: "success"
+        icon: "success",
       });
       loadStaff();
     },
@@ -182,7 +178,7 @@ function saveStaff() {
       Swal.fire({
         title: "Staff Member Save",
         text: "Staff Member Save Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       console.log(result);
       loadStaff();
@@ -191,8 +187,6 @@ function saveStaff() {
 }
 
 function updateStaff() {
-  const token = localStorage.getItem("token");
-
   var firstName = $("#first_name").val();
   var last_name = $("#last_name").val();
   var designation = $("#designation").val();
@@ -211,7 +205,7 @@ function updateStaff() {
     url: `http://localhost:5050/green-shadow/api/v1/staff/getstaffid/${firstName}`,
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (staffId) {
       console.log("Fetched staff id:", staffId);
@@ -235,7 +229,7 @@ function updateStaff() {
         url: `http://localhost:5050/green-shadow/api/v1/staff/${staffId}`,
         type: "PATCH",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         data: JSON.stringify(updatedStaffData),
@@ -244,7 +238,7 @@ function updateStaff() {
           Swal.fire({
             title: "Staff Member Update",
             text: "Staff Member Successfully Updated",
-            icon: "success"
+            icon: "success",
           });
           loadStaff();
         },
@@ -253,7 +247,7 @@ function updateStaff() {
           Swal.fire({
             title: "Staff Member Update",
             text: "Staff Member Update Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           console.error(error.responseText);
         },

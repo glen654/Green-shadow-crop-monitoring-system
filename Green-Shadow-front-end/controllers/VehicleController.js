@@ -5,12 +5,11 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadVehicle() {
-  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/vehicle",
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     success: function (vehicle) {
@@ -64,7 +63,6 @@ function loadVehicle() {
 }
 
 $("#vehicle-table").on("click", ".delete-button", function () {
-  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const licenseNumber = row.find(".vehicle-license-value").text();
@@ -73,7 +71,7 @@ $("#vehicle-table").on("click", ".delete-button", function () {
     url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (vehicleCode) {
       console.log("Fetched vehicle Code:", vehicleCode);
@@ -82,7 +80,7 @@ $("#vehicle-table").on("click", ".delete-button", function () {
         url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         success: function (results) {
@@ -90,7 +88,7 @@ $("#vehicle-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Vehicle Delete",
             text: "Vehicle Successfully Deleted",
-            icon: "success"
+            icon: "success",
           });
           loadVehicle();
         },
@@ -100,7 +98,7 @@ $("#vehicle-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Vehicle Delete",
             text: "Vehicle Delete Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           loadVehicle();
         },
@@ -114,8 +112,6 @@ $("#vehicle-table").on("click", ".delete-button", function () {
 });
 
 function saveVehicle() {
-  const token = localStorage.getItem("token");
-
   var license_plate_number = $("#license_plate").val();
   var vehicle_category = $("#category").val();
   var fuel_type = $("#fuel_type").val();
@@ -127,7 +123,7 @@ function saveVehicle() {
     url: " http://localhost:5050/green-shadow/api/v1/vehicle",
     type: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     data: JSON.stringify({
@@ -147,7 +143,7 @@ function saveVehicle() {
       Swal.fire({
         title: "Vehicle Save",
         text: "Vehicle Successfully Saved",
-        icon: "success"
+        icon: "success",
       });
     },
     error: function (result) {
@@ -155,7 +151,7 @@ function saveVehicle() {
       Swal.fire({
         title: "Vehicle Save",
         text: "Vehicle Save Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       console.log(result);
     },
@@ -182,8 +178,6 @@ $("#vehicle-table").on("click", "tr", function () {
 });
 
 function updateVehicle() {
-  const token = localStorage.getItem("token");
-
   var licenseNumber = $("#license_plate").val();
   var vehicle_category = $("#category").val();
   var fuel_type = $("#fuel_type").val();
@@ -195,7 +189,7 @@ function updateVehicle() {
     url: `http://localhost:5050/green-shadow/api/v1/vehicle/getvehiclecode/${licenseNumber}`,
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (vehicleCode) {
       console.log("Fetched vehicle code:", vehicleCode);
@@ -216,7 +210,7 @@ function updateVehicle() {
         url: `http://localhost:5050/green-shadow/api/v1/vehicle/${vehicleCode}`,
         type: "PATCH",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         data: JSON.stringify(updatedVehicleData),
@@ -225,7 +219,7 @@ function updateVehicle() {
           Swal.fire({
             title: "Vehicle Update",
             text: "Vehicle Successfully Updated",
-            icon: "success"
+            icon: "success",
           });
           loadVehicle();
         },
@@ -235,7 +229,7 @@ function updateVehicle() {
           Swal.fire({
             title: "Vehicle Update",
             text: "Vehicle Update Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           console.error(error.responseText);
         },

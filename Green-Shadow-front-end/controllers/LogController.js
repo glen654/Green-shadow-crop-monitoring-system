@@ -4,12 +4,11 @@ $(document).ready(function () {
 });
 
 function fetchCropNames() {
-  const token = localStorage.getItem("token");
   $.ajax({
     url: " http://localhost:5050/green-shadow/api/v1/crop/getallcropnames",
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     success: function (response) {
@@ -33,12 +32,11 @@ function fetchCropNames() {
 }
 
 function loadLogs() {
-  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/log",
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     success: function (log) {
@@ -83,7 +81,6 @@ function loadLogs() {
 }
 
 $("#log-table").on("click", ".delete-button", function () {
-  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const logDesc = row.find(".log-details-value").text();
@@ -92,7 +89,7 @@ $("#log-table").on("click", ".delete-button", function () {
     url: `http://localhost:5050/green-shadow/api/v1/log/getlogcode/${logDesc}`,
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (logCode) {
       console.log("Fetched log Code:", logCode);
@@ -101,7 +98,7 @@ $("#log-table").on("click", ".delete-button", function () {
         url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         success: function (results) {
@@ -109,7 +106,7 @@ $("#log-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Log Delete",
             text: "Log Successfully Deleted",
-            icon: "success"
+            icon: "success",
           });
           loadLogs();
         },
@@ -119,7 +116,7 @@ $("#log-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Log Delete",
             text: "Log Delete Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           loadLogs();
         },
@@ -133,8 +130,6 @@ $("#log-table").on("click", ".delete-button", function () {
 });
 
 function saveLog() {
-  const token = localStorage.getItem("token");
-
   const formData = new FormData();
 
   formData.append("logDate", $("#log_date").val());
@@ -148,7 +143,7 @@ function saveLog() {
     url: "http://localhost:5050/green-shadow/api/v1/log",
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: false,
     processData: false,
@@ -159,7 +154,7 @@ function saveLog() {
       Swal.fire({
         title: "Log Save",
         text: "Log Successfully Saved",
-        icon: "success"
+        icon: "success",
       });
       loadLogs();
     },
@@ -169,14 +164,13 @@ function saveLog() {
       Swal.fire({
         title: "Log Save",
         text: "Log Save Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
     },
   });
 }
 
 function updateLog() {
-  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("logDate", $("#log_date").val());
@@ -193,7 +187,7 @@ function updateLog() {
     url: url,
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (logCode) {
       console.log("Fetched log code:", logCode);
@@ -202,7 +196,7 @@ function updateLog() {
         url: `http://localhost:5050/green-shadow/api/v1/log/${logCode}`,
         method: "PATCH",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: false,
         processData: false,
@@ -213,7 +207,7 @@ function updateLog() {
           Swal.fire({
             title: "Log Update",
             text: "Equipment Successfully Updated",
-            icon: "success"
+            icon: "success",
           });
           loadLogs();
         },
@@ -223,7 +217,7 @@ function updateLog() {
           Swal.fire({
             title: "Log Update",
             text: "Log Update Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           loadLogs();
         },

@@ -5,14 +5,12 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadCrops() {
-  const token = localStorage.getItem("token");
-
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/crop",
     type: "GET",
     contentType: "application/json",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (crops) {
       console.log("Crops loaded:", crops);
@@ -49,7 +47,7 @@ function loadCrops() {
         const season = row.find(".crop-season-value").text();
         const field_name = row.find(".crop-field-value").text();
 
-        $("#crop_name").val(crop_name);
+        $("#crop_common_name").val(crop_name);
         $("#crop_scientific_name").val(scientific_name);
         $("#crop_category").val(category);
         $("#crop_season").val(season);
@@ -64,7 +62,6 @@ function loadCrops() {
 }
 
 $("#crop-table").on("click", ".delete-button", function () {
-  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const commonName = row.find(".crop-name-value").text();
@@ -73,7 +70,7 @@ $("#crop-table").on("click", ".delete-button", function () {
     url: `http://localhost:5050/green-shadow/api/v1/crop/getcropcode/${commonName}`,
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (cropCode) {
       console.log("Fetched crop Code:", cropCode);
@@ -82,7 +79,7 @@ $("#crop-table").on("click", ".delete-button", function () {
         url: `http://localhost:5050/green-shadow/api/v1/crop/${cropCode}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         success: function (results) {
@@ -90,7 +87,7 @@ $("#crop-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Crop Delete",
             text: "Crop Successfully Deleted",
-            icon: "success"
+            icon: "success",
           });
           loadCrops();
         },
@@ -100,7 +97,7 @@ $("#crop-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Crop Delete",
             text: "Crop Delete Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           loadCrops();
         },
@@ -114,7 +111,6 @@ $("#crop-table").on("click", ".delete-button", function () {
 });
 
 function saveCrop() {
-  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("common_name", $("#crop_common_name").val());
@@ -128,7 +124,7 @@ function saveCrop() {
     url: " http://localhost:5050/green-shadow/api/v1/crop",
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: false,
     processData: false,
@@ -139,7 +135,7 @@ function saveCrop() {
       Swal.fire({
         title: "Crop Save",
         text: "Crop Successfully Saved",
-        icon: "success"
+        icon: "success",
       });
       loadCrops();
     },
@@ -149,7 +145,7 @@ function saveCrop() {
       Swal.fire({
         title: "Crop Save",
         text: "Crop Save Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       loadCrops();
     },
@@ -157,7 +153,6 @@ function saveCrop() {
 }
 
 function updateCrop() {
-  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("common_name", $("#crop_common_name").val());
@@ -174,7 +169,7 @@ function updateCrop() {
     url: url,
     method: "PATCH",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: false,
     processData: false,
@@ -185,7 +180,7 @@ function updateCrop() {
       Swal.fire({
         title: "Crop Update",
         text: "Crop Successfully Updated",
-        icon: "success"
+        icon: "success",
       });
       loadCrops();
     },
@@ -195,7 +190,7 @@ function updateCrop() {
       Swal.fire({
         title: "Crop Update",
         text: "Crop Update Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       loadCrops();
     },

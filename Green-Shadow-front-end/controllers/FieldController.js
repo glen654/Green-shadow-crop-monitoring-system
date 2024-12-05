@@ -5,13 +5,12 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadFields() {
-  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/field",
     type: "GET",
     contentType: "application/json",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (fields) {
       console.log("Fields loaded:", fields);
@@ -64,7 +63,6 @@ function loadFields() {
 }
 
 $("#fields-table").on("click", ".delete-button", function () {
-  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const fieldName = row.find(".field-name-value").text();
@@ -74,7 +72,7 @@ $("#fields-table").on("click", ".delete-button", function () {
     url: url,
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (fieldCode) {
       console.log("Fetched field Code:", fieldCode);
@@ -83,7 +81,7 @@ $("#fields-table").on("click", ".delete-button", function () {
         url: "http://localhost:5050/green-shadow/api/v1/field/" + fieldCode,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         success: function (results) {
@@ -91,7 +89,7 @@ $("#fields-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Field Delete",
             text: "Field Successfully Deleted",
-            icon: "success"
+            icon: "success",
           });
           fetchFieldNames("field_details");
           loadFields();
@@ -102,7 +100,7 @@ $("#fields-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Field Delete",
             text: "Field Delete Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
         },
       });
@@ -115,7 +113,6 @@ $("#fields-table").on("click", ".delete-button", function () {
 });
 
 function saveField() {
-  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("field_name", $("#field_name").val());
@@ -135,7 +132,7 @@ function saveField() {
     url: "http://localhost:5050/green-shadow/api/v1/field",
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: false,
     processData: false,
@@ -146,7 +143,7 @@ function saveField() {
       Swal.fire({
         title: "Field Save",
         text: "Field Successfully Saved",
-        icon: "success"
+        icon: "success",
       });
       fetchFieldNames("field_details");
       loadFields();
@@ -157,7 +154,7 @@ function saveField() {
       Swal.fire({
         title: "Field Save",
         text: "Field Save Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       loadFields();
     },
@@ -165,7 +162,6 @@ function saveField() {
 }
 
 function updateFields() {
-  const token = localStorage.getItem("token");
   const formData = new FormData();
 
   formData.append("field_name", $("#field_name").val());
@@ -187,7 +183,7 @@ function updateFields() {
     url: url,
     method: "PATCH",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: false,
     processData: false,
@@ -198,7 +194,7 @@ function updateFields() {
       Swal.fire({
         title: "Field Update",
         text: "Field Successfully Updated",
-        icon: "success"
+        icon: "success",
       });
       loadFields();
     },
@@ -208,24 +204,24 @@ function updateFields() {
       Swal.fire({
         title: "Field Update",
         text: "Field Update Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       loadFields();
     },
   });
 }
 
-function clearFields(){
+function clearFields() {
   console.log("clicked");
-  
-  $("#field_name").val('');
-  $("#field_location_x").val('');
-  $("#field_location_y").val('');
-  $("#field_size").val('');
+
+  $("#field_name").val("");
+  $("#field_location_x").val("");
+  $("#field_location_y").val("");
+  $("#field_size").val("");
 }
 
 // $("#clearBtn").on("click", function () {
 //   console.log("clicked");
-  
+
 //   clearFields();
 // });

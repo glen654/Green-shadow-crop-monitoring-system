@@ -5,13 +5,12 @@ $(document).ready(function () {
 var recordIndex;
 
 function loadEquipment() {
-  const token = localStorage.getItem("token");
   $.ajax({
     url: "http://localhost:5050/green-shadow/api/v1/equipment",
     type: "GET",
     contentType: "application/json",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (equipment) {
       console.log("Equipment loaded:", equipment);
@@ -60,7 +59,6 @@ function loadEquipment() {
 }
 
 $("#equipment-table").on("click", ".delete-button", function () {
-  const token = localStorage.getItem("token");
   const row = $(this).closest("tr");
 
   const equipmentName = row.find(".equip-name-value").text();
@@ -69,7 +67,7 @@ $("#equipment-table").on("click", ".delete-button", function () {
     url: `http://localhost:5050/green-shadow/api/v1/equipment/getequipId/${equipmentName}`,
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (equipmentId) {
       console.log("Fetched equipment Code:", equipmentId);
@@ -78,7 +76,7 @@ $("#equipment-table").on("click", ".delete-button", function () {
         url: `http://localhost:5050/green-shadow/api/v1/equipment/${equipmentId}`,
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         success: function (results) {
@@ -86,7 +84,7 @@ $("#equipment-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Equipment Delete",
             text: "Equipment Successfully Deleted",
-            icon: "success"
+            icon: "success",
           });
           loadEquipment();
         },
@@ -96,7 +94,7 @@ $("#equipment-table").on("click", ".delete-button", function () {
           Swal.fire({
             title: "Equipment Delete",
             text: "Equipment Delete Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           loadEquipment();
         },
@@ -110,8 +108,6 @@ $("#equipment-table").on("click", ".delete-button", function () {
 });
 
 function saveEquipment() {
-  const token = localStorage.getItem("token");
-
   var equipment_name = $("#equipment_name").val();
   var equipment_type = $("#equipment_type").val();
   var equipment_status = $("#equipment_status").val();
@@ -122,7 +118,7 @@ function saveEquipment() {
     url: " http://localhost:5050/green-shadow/api/v1/equipment",
     type: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     contentType: "application/json",
     data: JSON.stringify({
@@ -144,7 +140,7 @@ function saveEquipment() {
       Swal.fire({
         title: "Equipment Save",
         text: "Equipment Successfully Saved",
-        icon: "success"
+        icon: "success",
       });
     },
     error: function (result) {
@@ -152,7 +148,7 @@ function saveEquipment() {
       Swal.fire({
         title: "Equipment Save",
         text: "Equipment Save Unsuccessfull",
-        icon: "error"
+        icon: "error",
       });
       console.log(result);
     },
@@ -160,7 +156,6 @@ function saveEquipment() {
 }
 
 function updateEquipment() {
-  const token = localStorage.getItem("token");
   var equipmentName = $("#equipment_name").val();
   var equipment_type = $("#equipment_type").val();
   var equipment_status = $("#equipment_status").val();
@@ -171,7 +166,7 @@ function updateEquipment() {
     url: `http://localhost:5050/green-shadow/api/v1/equipment/getequipId/${equipmentName}`,
     type: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     success: function (equipmentId) {
       console.log("Fetched equip id:", equipmentId);
@@ -193,7 +188,7 @@ function updateEquipment() {
         url: `http://localhost:5050/green-shadow/api/v1/equipment/${equipmentId}`,
         type: "PATCH",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         contentType: "application/json",
         data: JSON.stringify(updatedEquipData),
@@ -202,7 +197,7 @@ function updateEquipment() {
           Swal.fire({
             title: "Equipment Update",
             text: "Equipment Successfully Updated",
-            icon: "success"
+            icon: "success",
           });
           loadEquipment();
         },
@@ -211,7 +206,7 @@ function updateEquipment() {
           Swal.fire({
             title: "Equipment Update",
             text: "Equipment Update Unsuccessfull",
-            icon: "error"
+            icon: "error",
           });
           console.error(error.responseText);
         },

@@ -28,7 +28,7 @@
       <div class="form-section">
         <div id="login-form">
           <h2>Green Shadow Login</h2>
-          <form>
+          <form onsubmit="userLogin(event)">
             <div class="input-group">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" id="login_email">
@@ -37,7 +37,7 @@
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" id="login_password">
             </div>
-            <button type="submit" id="btn-login" onclick="userLogin()">Login</button>
+            <button type="submit" id="btn-login">Login</button>
             <p class="link">
               Don't have an account? <a id="show-register">Register</a>
             </p>

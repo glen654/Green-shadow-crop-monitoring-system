@@ -31,13 +31,13 @@
           <form>
             <div class="input-group">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" required>
+              <input type="email" placeholder="Email" id="login_email">
             </div>
             <div class="input-group">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" required>
+              <input type="password" placeholder="Password" id="login_password">
             </div>
-            <button type="submit" id="btn-login" onclick="login()">Login</button>
+            <button type="submit" id="btn-login" onclick="userLogin()">Login</button>
             <p class="link">
               Don't have an account? <a id="show-register">Register</a>
             </p>
@@ -49,17 +49,22 @@
           <form>
             <div class="input-group">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" required>
+              <input type="email" placeholder="Email" id="register_email" required>
             </div>
             <div class="input-group">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" required>
+              <input type="password" placeholder="Password" id="register_password" required>
             </div>
             <div class="input-group">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Role (e.g., Admin, User)" required>
+              <select class="form-control mb-4 shadow-none" id="register_role">
+                <option value="" selected>Select a Role</option>
+                  <option value="ADMINISTRATIVE">Administrative</option>
+                  <option value="MANAGER">Manager</option>
+                  <option value="SCIENTIST">Scientist</option>
+              </select>
             </div>
-            <button type="submit" id="btn-register">Register</button>
+            <button type="submit" id="btn-register" onclick="signUp()">Register</button>
             <p class="link">
               Already have an account? <a id="show-login">Login</a>
             </p>
@@ -662,6 +667,7 @@
   <!-- script js -->
   <script src="/Green-Shadow-front-end/js/script.js"></script>
   <!-- Controllers -->
+   <script src="/Green-Shadow-front-end/controllers/UserController.js"></script>
    <script src="/Green-Shadow-front-end/controllers/Controller.js"></script>
    <script src="/Green-Shadow-front-end/controllers/FieldController.js"></script>
    <script src="/Green-Shadow-front-end/controllers/CropController.js"></script>

@@ -56,9 +56,32 @@ h2 {
   border-radius: 5px;
 }
 
+.input-group select{
+  width: 100%;
+  padding: 10px 40px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-group select:focus{
+  outline: none;
+  border-color: #28bba2;
+}
+
 .input-group input:focus {
   outline: none;
   border-color: #28bba2;
+}
+
+#show-register{
+  font-weight: 500;
+  color: #28bba2c7;
+}
+
+#show-login{
+  font-weight: 500;
+  color: #28bba2c7;
 }
 
 #btn-login {

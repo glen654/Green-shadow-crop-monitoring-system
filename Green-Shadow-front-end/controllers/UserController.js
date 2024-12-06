@@ -142,3 +142,10 @@ function userLogin() {
     },
   });
 }
+
+function logout() {
+  if (hash === "#login-section") {
+    $("#dashboard-section").css("display", "none");
+    $("#login-section").css("display", "block");
+  }
+}
